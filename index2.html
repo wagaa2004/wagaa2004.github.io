@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESLAM | Ethical Hacker V4 - FINAL</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Courier New',monospace}
+body{background:#000;color:#00ff41;overflow-x:hidden}
+canvas{position:fixed;top:0;left:0;z-index:0;opacity:.22}
+.wrap{position:relative;z-index:2;max-width:920px;margin:auto;padding:14px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid #00ff41;background:rgba(0,20,0,.85);flex-wrap:wrap;gap:8px}
+.top button{background:#00ff41;color:#000;border:none;padding:8px 14px;font-weight:bold;cursor:pointer}
+.top button.active{background:#fff}
+.header{text-align:center;padding:30px 10px}
+.header h1{font-size:42px;letter-spacing:3px;text-shadow:0 0 20px #00ff41}
+.header p{letter-spacing:4px;margin-top:8px;color:#aaffaa}
+.profileImg{width:120px;height:120px;border-radius:50%;border:3px solid #00ff41;box-shadow:0 0 25px #00ff41;object-fit:cover;margin-bottom:12px}
+.box{border:1px solid #00ff41;background:rgba(0,30,0,.88);padding:18px;margin-bottom:14px}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #0a5a1a;gap:10px}
+.green{color:#00ff41}.red{color:#ff2a2a}
+#terminal{background:#000;border:1px solid #00ff41;padding:14px;min-height:180px;white-space:pre-wrap;font-size:14px;line-height:1.6;overflow-y:auto;max-height:280px}
+#cmd{width:100%;background:#001100;color:#00ff41;border:1px solid #00ff41;padding:12px;margin-top:8px;outline:none}
+.hackBtn{width:100%;padding:15px;background:#ff0000;color:#fff;border:none;font-size:18px;font-weight:bold;cursor:pointer;letter-spacing:2px;margin-bottom:14px}
+.btn2{width:100%;padding:14px;background:#00ff41;color:#000;border:none;font-size:16px;font-weight:bold;cursor:pointer;margin-bottom:10px}
+.btnWhatsapp{width:100%;padding:14px;background:#25D366;color:#fff;border:none;font-size:16px;font-weight:bold;cursor:pointer;margin-bottom:10px;text-align:center;display:block;text-decoration:none}
+.skill{margin:11px 0}.bar{height:14px;background:#0a2a0a;border:1px solid #00ff41;margin-top:5px}.fill{height:100%;background:#00ff41;box-shadow:0 0 12px #00ff41;width:0;transition:1.5s}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat{text-align:center;border:1px solid #00ff41;padding:14px}.stat b{font-size:26px;display:block}
+.badge{display:inline-block;border:1px solid #00ff41;padding:8px 12px;margin:5px;border-radius:20px;background:#001a00}
+.cert{border:1px dashed #00ff41;padding:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+.glitch{animation:glitch .3s infinite}@keyframes glitch{0%{transform:translate(2px,2px)}50%{transform:translate(-3px,1px)}100%{transform:translate(1px,-2px)}}
+.secret{display:none;border:2px solid red;padding:14px;background:#1a0000}.secret.show{display:block}
+input,textarea{width:100%;background:#000;color:#00ff41;border:1px solid #00ff41;padding:12px;margin:6px 0}
+.progress{height:20px;background:#220000;border:1px solid red;margin-top:10px}.pFill{height:100%;background:red;width:0%;transition:.2s;text-align:center;color:#fff;font-size:12px}
+.musicBar{position:fixed;bottom:0;left:0;right:0;background:#001100;border-top:2px solid #00ff41;padding:10px;text-align:center;z-index:99}
+.musicBar button{background:#00ff41;color:#000;border:none;padding:8px 16px;font-weight:bold;cursor:pointer;margin:0 5px}
+@media(max-width:600px){.header h1{font-size:30px}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="wrap" style="padding-bottom:80px">
+<div class="top"><span id="t-clock">🕒 00:00:00 | 👁 Visitors: 1,337</span><div><button id="btnEn" class="active" onclick="setLang('en')">EN</button> <button id="btnAr" onclick="setLang('ar')">عربي</button></div></div>
+
+<div class="header">
+<img class="profileImg" src="https://github.com/wagaa2004.png" onerror="this.src='https://via.placeholder.com/120/000000/00ff41?text=EK'">
+<h1>ESLAM_KABOUS</h1>
+<p id="t-subtitle">CYBERSECURITY • PENETRATION TESTING • PORTFOLIO</p>
+<p style="margin-top:10px">📍 Egypt | 💼 Freelancer | 🛡️ Ethical Hacker</p>
+</div>
+
+<!-- CV + MUSIC BUTTONS -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button class="btn2" onclick="downloadCV()">📄 DOWNLOAD MY CV</button>
+<button class="btn2" style="background:#fff" onclick="toggleMusic()">🎵 PLAY HACKER MUSIC</button>
+</div>
+<a class="btnWhatsapp" href="https://wa.me/201000000000" target="_blank">💬 WHATSAPP ME - كلمني واتساب</a>
+
+<div class="box"><h3>💻 LIVE TERMINAL - TRY: help / whoami / skills / hack / clear</h3>
+<div id="terminal">> Initializing system...\n> Type 'help' and press Enter</div>
+<input id="cmd" placeholder="Type command: help / whoami / skills / hack / clear ...">
+</div>
+
+<div class="box"><h3>🛡️ PROFILE DATA</h3>
+<div class="row"><span>ROLE</span><span>ETHICAL HACKER - ONLINE</span></div>
+<div class="row"><span>FOCUS</span><span>WEB SECURITY • SOC • THREAT ANALYSIS</span></div>
+<div class="row"><span>STATUS</span><span class="green">● AVAILABLE FOR FREELANCE</span></div>
+</div>
+
+<button class="hackBtn" onclick="hackMe()">⚠️ HACK ME - TRY TO BREACH ⚠️</button>
+<div id="secret" class="secret"><h2 style="color:red">🚨 SYSTEM BREACHED 🚨</h2><p>You found the secret zone. Real hackers live here. Welcome to my world.</p></div>
+
+<div class="box"><h3>🎮 HACK THE SYSTEM GAME</h3><p>اضغط 10 مرات بسرعة عشان تخترق النظام!</p>
+<button class="hackBtn" style="background:#00ff41;color:#000" onclick="playGame()">🔥 CLICK TO HACK (<span id="score">0</span>/10)</button>
+<div class="progress"><div class="pFill" id="pFill">0%</div></div><p id="gameMsg" style="margin-top:8px"></p></div>
+
+<div class="box"><h3>🔐 PASSWORD STRENGTH CHECKER</h3>
+<input id="pass" type="text" placeholder="اكتب باسورد هنا..." oninput="checkPass()">
+<p id="passResult" style="margin-top:8px">Strength: ---</p></div>
+
+<div class="box"><h3>📊 LIVE STATS</h3><div class="stats">
+<div class="stat"><b id="n1">0</b>Threats Blocked</div><div class="stat"><b id="n2">0</b>Systems Secured</div>
+<div class="stat"><b id="n3">0</b>CTF Solved</div><div class="stat"><b>99.9%</b>Uptime</div></div></div>
+
+<div class="box"><h3>💻 HACKER SKILLS</h3>
+<div class="skill">Kali Linux<div class="bar"><div class="fill" data-w="95%"></div></div></div>
+<div class="skill">Python & Automation<div class="bar"><div class="fill" data-w="90%"></div></div></div>
+<div class="skill">Penetration Testing<div class="bar"><div class="fill" data-w="92%"></div></div></div>
+<div class="skill">Web Security / OWASP<div class="bar"><div class="fill" data-w="88%"></div></div></div>
+<div class="skill">SOC & Threat Analysis<div class="bar"><div class="fill" data-w="85%"></div></div></div></div>
+
+<div class="box"><h3>🎓 CERTIFICATES / الشهادات</h3>
+<div class="cert"><span>🛡️ Certified Ethical Hacker (CEH) - In Progress</span><b style="color:#ffaa00">2026</b></div>
+<div class="cert"><span>💻 TryHackMe - Jr Penetration Tester</span><b class="green">COMPLETED</b></div>
+<div class="cert"><span>🔥 Google Cybersecurity Certificate</span><b class="green">COMPLETED</b></div>
+<div class="cert"><span>🐍 Python for Cybersecurity</span><b class="green">COMPLETED</b></div>
+<p style="margin-top:8px;opacity:.8">لو عندك شهادة تانية، قولي اسمها وهضيفها ليك هنا.</p></div>
+
+<div class="box"><h3>🏆 ACHIEVEMENTS & CTF</h3><span class="badge">🥇 TryHackMe Top 5%</span><span class="badge">🛡️ Bug Bounty Hunter</span><span class="badge">💻 50+ CTF Solved</span><span class="badge">🔥 Ethical Hacker</span></div>
+
+<div class="box"><h3>🚀 PROJECTS</h3>
+<div class="row"><span>01 - Web Vulnerability Scanner</span><span class="green">COMPLETED</span></div>
+<div class="row"><span>02 - Phishing Detection Tool</span><span class="green">COMPLETED</span></div>
+<div class="row"><span>03 - SOC Dashboard</span><span class="red">IN PROGRESS</span></div></div>
+
+<div class="box"><h3>📩 CONTACT - SECURE CHANNEL</h3><input placeholder="Your Name"><input placeholder="Your Email"><textarea placeholder="Your Mission"></textarea><button class="btn2">SEND ENCRYPTED MESSAGE</button></div>
+<p style="text-align:center;padding:12px;opacity:.7">© 2026 ESLAM KABOUS - ETHICAL HACKER | Made with 💚 in Egypt</p>
+</div>
+
+<div class="musicBar"><span id="musicTxt">🎵 Hacker Mode Music</span> <button onclick="toggleMusic()">▶️ Play / ⏸️ Pause</button></div>
+<audio id="music" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" type="audio/mpeg"></audio>
+
+<script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;
+let drops=Array(Math.floor(cv.width/16)).fill(1);
+setInterval(()=>{ctx.fillStyle='rgba(0,0,0,0.08)';ctx.fillRect(0,0,cv.width,cv.height);ctx.fillStyle='#00ff41';ctx.font='14px monospace';drops.forEach((y,i)=>{ctx.fillText(String.fromCharCode(48+Math.random()*70),i*16,y*16);if(y*16>cv.height&&Math.random()>.98)drops[i]=0;drops[i]++})},50);
+setInterval(()=>{document.getElementById('t-clock').innerHTML='🕒 '+new Date().toLocaleTimeString()+' | 👁 Visitors: '+(1337+Math.floor(Math.random()*50))},1000);
+function anim(id,t){let c=0,iv=setInterval(()=>{c+=Math.ceil(t/40);if(c>=t){c=t;clearInterval(iv)}document.getElementById(id).textContent=c.toLocaleString()},40)}
+anim('n1',1247);anim('n2',89);anim('n3',52);
+setTimeout(()=>document.querySelectorAll('.fill').forEach(e=>e.style.width=e.dataset.w),600);
+function hackMe(){document.body.classList.add('glitch');setTimeout(()=>document.body.classList.remove('glitch'),900);document.getElementById('secret').classList.add('show');alert('⚠️ SYSTEM BREACHED!');}
+let term=document.getElementById('terminal');
+document.getElementById('cmd').addEventListener('keydown',e=>{
+if(e.key==='Enter'){let v=e.target.value.trim().toLowerCase();term.textContent+='\n> '+v+'\n';
+if(v==='help')term.textContent+='Commands: whoami, skills, hack, social, cv, clear';
+else if(v==='whoami')term.textContent+='eslam_kabous - Ethical Hacker from Egypt 🇪🇬';
+else if(v==='skills')term.textContent+='Kali 95% | Python 90% | Pentest 92% | OWASP 88%';
+else if(v==='hack')term.textContent+='[!] Initiating attack... ACCESS DENIED! System is too secure 😎';
+else if(v==='social')term.textContent+='GitHub: wagaa2004 | WhatsApp below';
+else if(v==='cv')term.textContent+='Downloading CV... Check your downloads!';
+else if(v==='clear')term.textContent='';
+else term.textContent+='Unknown command. Type help';
+term.scrollTop=term.scrollHeight;e.target.value='';}});
+let score=0;function playGame(){score++;document.getElementById('score').textContent=score;let p=score*10;document.getElementById('pFill').style.width=p+'%';document.getElementById('pFill').textContent=p+'%';if(score>=10){document.getElementById('gameMsg').textContent='🎉 مبروك! انت اخترقت النظام! انت هاكر حقيقي';score=0;}}
+function checkPass(){let p=document.getElementById('pass').value;let r=document.getElementById('passResult');if(p.length<4)r.textContent='Strength: ❌ ضعيف جدا - هيتكسر في ثانية';else if(p.length<8)r.textContent='Strength: ⚠️ متوسط - هيتكسر في ساعة';else if(p.length<12)r.textContent='Strength: ✅ قوي - هيتكسر في سنة';else r.textContent='Strength: 🔥 وحش - مستحيل يتكسر!';}
+function setLang(l){document.documentElement.dir=l==='ar'?'rtl':'ltr';document.getElementById('btnEn').classList.toggle('active',l==='en');document.getElementById('btnAr').classList.toggle('active',l==='ar');if(l==='ar'){document.getElementById('t-subtitle').textContent='الأمن السيبراني • اختبار الاختراق';}else{document.getElementById('t-subtitle').textContent='CYBERSECURITY • PENETRATION TESTING • PORTFOLIO';}}
+let playing=false;function toggleMusic(){let a=document.getElementById('music');if(playing){a.pause();playing=false;document.getElementById('musicTxt').textContent='🎵 Music Paused';}else{a.play();playing=true;document.getElementById('musicTxt').textContent='🎵 Now Playing: Hacker Mode 🔥';}}
+function downloadCV(){let cvText=`ESLAM KABOUS - ETHICAL HACKER\n\nRole: Ethical Hacker | Penetration Tester\nLocation: Egypt\nFocus: Web Security, SOC, Threat Analysis\n\nSkills:\n- Kali Linux 95%\n- Python 90%\n- Penetration Testing 92%\n- OWASP 88%\n\nContact: via website wagaa2004.github.io`;let blob=new Blob([cvText],{type:'text/plain'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ESLAM-KABOUS-CV.txt';a.click();alert('CV Downloaded! ✅');}
+</script>
+</body>
+  </html>
