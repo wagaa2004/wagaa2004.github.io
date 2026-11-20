@@ -1,133 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ESLAM KABOUS | HACKER</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>إسلام كابوس | أمن سيبراني</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#e8e8e8;font-family:'JetBrains Mono',monospace;overflow-x:hidden}
-:root{--c:#00ff41}
-canvas#matrix{position:fixed;inset:0;z-index:0;opacity:.18}
-.wrap{position:relative;z-index:2;max-width:940px;margin:0 auto;padding:0 18px}
-.top{border-bottom:1px solid #1a2a1a;display:flex;justify-content:space-between;padding:14px 0;align-items:center;flex-wrap:wrap;gap:10px}
-.logo{font-family:'Orbitron',sans-serif;font-weight:900}.logo b{color:var(--c)}
-.nav{display:flex;gap:12px;font-size:11px}.nav a{color:#aaa;text-decoration:none}
-.hero{text-align:center;padding:50px 0 30px;position:relative}
-.welcome{border:1px solid var(--c);background:rgba(0,255,65,.06);padding:14px;max-width:640px;margin:0 auto 24px;text-align:left;min-height:88px;font-family:'Share Tech Mono',monospace;color:var(--c)}
-
-/* === صورتك الجديدة - هولوجرام === */
-.photo-wrap{position:relative;width:190px;height:190px;margin:0 auto 22px}
-.ring{position:absolute;inset:-12px;border:1px dashed var(--c);border-radius:50%;animation:spin 8s linear infinite}
-.ring2{position:absolute;inset:-24px;border:1px solid rgba(0,255,65,.3);border-radius:50%;animation:spin2 12s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes spin2{to{transform:rotate(-360deg)}}
-.my-photo{width:190px;height:190px;border-radius:50%;object-fit:cover;border:3px solid var(--c);box-shadow:0 0 40px rgba(0,255,65,.6),0 0 80px rgba(0,255,65,.3);animation:holo 3s ease-in-out infinite;position:relative;z-index:2;background:#001100}
-@keyframes holo{0%,100%{filter:brightness(1) hue-rotate(0deg)}50%{filter:brightness(1.3) hue-rotate(10deg)}}
-.scanline{position:absolute;left:0;right:0;height:3px;background:var(--c);box-shadow:0 0 15px var(--c);z-index:3;animation:scanPhoto 2.5s linear infinite;border-radius:50%}
+body{background:#000;color:#e8e8e8;font-family:'Cairo',sans-serif;line-height:1.7;overflow-x:hidden}
+:root{--c:#00ff41}body.red{--c:#ff0033}body.darkweb{background:#050000}
+canvas#matrix{position:fixed;inset:0;z-index:0;opacity:.15}
+.wrap{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 16px}
+.top{position:sticky;top:0;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);border-bottom:1px solid #1a2a1a;z-index:50}
+.top-in{max-width:920px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:17px;direction:ltr;white-space:nowrap}.logo span{color:var(--c)}
+.nav{display:flex;gap:12px;font-size:12px;font-weight:600}.nav a{color:#aaa;text-decoration:none}.nav a:hover{color:var(--c)}
+.hero{text-align:center;padding:42px 0 28px}
+.welcome{border:1px solid var(--c);background:rgba(0,255,65,.06);padding:12px;max-width:640px;margin:0 auto 20px;text-align:left;min-height:70px;font-family:'Share Tech Mono',monospace;color:var(--c);direction:ltr;font-size:13px;border-radius:8px}
+.photo-wrap{position:relative;width:185px;height:185px;margin:0 auto 18px}
+.ring{position:absolute;inset:-10px;border:1px dashed var(--c);border-radius:50%;animation:spin 8s linear infinite}.ring2{position:absolute;inset:-22px;border:1px solid rgba(0,255,65,.3);border-radius:50%;animation:spin2 12s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes spin2{to{transform:rotate(-360deg)}}
+.my-photo{width:185px;height:185px;border-radius:50%;object-fit:cover;border:3px solid var(--c);box-shadow:0 0 35px rgba(0,255,65,.5);position:relative;z-index:2;background:#001100;display:block}
+.fallback{width:185px;height:185px;border-radius:50%;background:#001100;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:48px;font-weight:900;color:var(--c);border:3px solid var(--c);direction:ltr}
+.scanline{position:absolute;left:0;right:0;height:3px;background:var(--c);box-shadow:0 0 15px var(--c);z-index:3;animation:scanPhoto 2.5s linear infinite}
 @keyframes scanPhoto{0%{top:10%}100%{top:90%}}
-.fallback{width:190px;height:190px;border-radius:50%;background:#001100;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:55px;font-weight:900;color:var(--c);border:3px solid var(--c)}
-
-/* === زخرفة الاسم الجديدة - DIGITAL === */
-.name-box{position:relative;display:inline-block}
-.digital-name{font-family:'Orbitron',sans-serif;font-size:52px;font-weight:900;letter-spacing:4px;line-height:1;display:flex;justify-content:center;flex-wrap:wrap;gap:2px}
-.digital-name span{display:inline-block;animation:letterPop .6s both, neonPulse 2s infinite; background:linear-gradient(180deg,#fff 20%,#00ff41 50%,#00ff41 70%,#003300 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 20px rgba(0,255,65,.5)}
-@keyframes letterPop{0%{transform:translateY(30px) scale(.5);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
-@keyframes neonPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.6)}}
-.name-line{height:3px;background:linear-gradient(90deg,transparent,#00ff41,transparent);margin:14px auto 0;animation:lineMove 2s linear infinite;background-size:200% 100%}
-@keyframes lineMove{0%{background-position:0% 0}100%{background-position:200% 0}}
-.binary-fly{position:absolute;font-family:'Share Tech Mono',monospace;color:rgba(0,255,65,.5);font-size:12px;animation:fly 4s linear infinite}
-@keyframes fly{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(-60px);opacity:0}}
-.sub{font-family:'Share Tech Mono',monospace;color:var(--c);letter-spacing:4px;margin-top:14px;font-size:15px}
-.desc{color:#aaa;max-width:620px;margin:14px auto;line-height:1.7;font-size:14px}
-.btn{padding:12px 18px;border:1px solid var(--c);background:transparent;color:var(--c);font-family:'JetBrains Mono',monospace;font-weight:700;cursor:pointer;text-decoration:none;font-size:12px;display:inline-block}
-.btn:hover{background:var(--c);color:#000}
-.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
-section{padding:36px 0;border-top:1px solid #1a1a1a}
-h2{font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:2px;color:var(--c);margin-bottom:16px}
+.status{display:inline-flex;align-items:center;gap:6px;background:#0a2a0a;border:1px solid #1f4a1f;padding:5px 12px;border-radius:20px;font-size:12px;color:#8aff8a;margin-bottom:12px}
+.dot-live{width:8px;height:8px;background:var(--c);border-radius:50%;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.name-en{font-family:'Orbitron',sans-serif;font-size:42px;font-weight:900;letter-spacing:2px;line-height:1.1;direction:ltr;unicode-bidi:isolate;color:#fff;white-space:nowrap}
+.name-ar{font-size:27px;font-weight:900;color:var(--c);margin-top:4px}
+.job{color:#bbb;font-size:14px;margin-top:6px}
+.desc{color:#999;max-width:620px;margin:12px auto;font-size:14px;line-height:1.9}
+.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.stat{background:#0f1a0f;border:1px solid #1e2e1e;padding:10px 14px;border-radius:12px;min-width:105px}
+.stat b{display:block;font-size:20px;color:var(--c);font-family:'Orbitron',sans-serif;direction:ltr}.stat span{font-size:11px;color:#999}
+.btn{padding:11px 16px;border:1px solid var(--c);background:transparent;color:var(--c);font-family:'Cairo',sans-serif;font-weight:700;cursor:pointer;text-decoration:none;font-size:13px;display:inline-block;border-radius:8px}
+.btn:hover{background:var(--c);color:#000}.btn-fill{background:var(--c);color:#000}
+.btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+section{padding:30px 0;border-top:1px solid #141f14}
+h2{font-size:17px;font-weight:900;color:var(--c);margin-bottom:4px}.sub-title{color:#777;font-size:12px;margin-bottom:14px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{border:1px solid #222;padding:16px;background:rgba(0,20,0,.4)}
-.card h3{font-size:14px;margin-bottom:6px}.card p{font-size:12px;color:#999;line-height:1.6}
-.tag{display:inline-block;border:1px solid #333;padding:3px 6px;font-size:10px;margin:5px 3px 0 0;color:var(--c)}
-.proj{border:1px solid #222;padding:16px;margin-bottom:10px;display:flex;justify-content:space-between;gap:10px}.proj h3{font-size:14px}.proj p{font-size:12px;color:#999;margin-top:5px}.st{color:var(--c);font-size:10px}
-.terminal{border:1px solid var(--c);background:#000;padding:14px;font-family:'Share Tech Mono',monospace;font-size:13px;line-height:1.7;color:var(--c);min-height:140px;overflow:auto}
-input,textarea{width:100%;background:#000;border:1px solid #333;color:#fff;padding:11px;margin-bottom:9px;font-family:'JetBrains Mono',monospace}
-#map{height:160px;border:1px solid #222;position:relative;overflow:hidden;background:#020a02}.dot{position:absolute;width:8px;height:8px;background:var(--c);border-radius:50%;box-shadow:0 0 12px var(--c);animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.card{background:#0f1a0f;border:1px solid #1e2e1e;padding:16px;border-radius:12px}.card h3{font-size:14px;margin-bottom:5px}.card p{font-size:12px;color:#999;line-height:1.7}
+.tag{display:inline-block;background:#0a200a;border:1px solid #1f4a1f;color:var(--c);padding:3px 8px;border-radius:20px;font-size:11px;margin:4px 2px 0 0}
+.skill-bar{height:8px;background:#1a1a1a;border-radius:10px;overflow:hidden;margin:6px 0 12px}.skill-fill{height:100%;background:linear-gradient(90deg,var(--c),#00b32d);width:0;transition:width 1.2s ease}
+.skill-row{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.timeline{border-right:2px solid #1f4a1f;padding-right:18px}.t-item{position:relative;margin-bottom:16px}.t-item:before{content:"";position:absolute;right:-24px;top:6px;width:10px;height:10px;background:var(--c);border-radius:50%;box-shadow:0 0 10px var(--c)}.t-item b{color:#fff}.t-item span{color:var(--c);font-size:12px}.t-item p{color:#999;font-size:12px}
+.proj{display:flex;justify-content:space-between;gap:10px;background:#0f1a0f;border:1px solid #1e2e1e;padding:14px;border-radius:12px;margin-bottom:8px}.proj h3{font-size:13px}.proj p{font-size:12px;color:#999}.st{color:var(--c);font-size:11px;white-space:nowrap;font-weight:700}
+.terminal{border:1px solid var(--c);background:#000;padding:12px;border-radius:12px;font-family:monospace;font-size:13px;line-height:1.7;color:var(--c);min-height:130px;overflow:auto;direction:ltr;text-align:left}
+input,textarea{width:100%;background:#0a0a0a;border:1px solid #2a2a2a;color:#fff;padding:11px;margin-bottom:9px;font-family:'Cairo',sans-serif;border-radius:8px;font-size:14px}
+input:focus,textarea:focus{border-color:var(--c);outline:none}
+#map{height:150px;border:1px solid #222;position:relative;overflow:hidden;background:#020a02;border-radius:10px}.dot{position:absolute;width:8px;height:8px;background:var(--c);border-radius:50%;box-shadow:0 0 12px var(--c);animation:blink 1s infinite}
 #panicOverlay{display:none;position:fixed;inset:0;background:#ff0000;z-index:999;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:#fff;font-family:'Orbitron',sans-serif}
-#secret{display:none;border:1px solid gold;padding:16px;background:#111100;color:gold;text-align:center}
-#aiBox{border:1px solid var(--c);padding:14px;background:#000;max-height:220px;overflow:auto;font-size:13px;line-height:1.6}
-#hackSim{display:none;position:fixed;inset:0;background:#000;z-index:998;padding:20px;color:var(--c);font-family:'Share Tech Mono',monospace;overflow:auto}
-#snakeCanvas{border:1px solid var(--c);background:#000;display:block;margin:0 auto}
-.ach{border:1px solid #333;padding:12px;text-align:center;cursor:pointer}
-footer{padding:22px 0;text-align:center;color:#555;font-size:11px}
-@media(max-width:650px){.digital-name{font-size:30px}.grid{grid-template-columns:1fr}.nav{display:none}}
+#hackSim{display:none;position:fixed;inset:0;background:#000;z-index:998;padding:20px;color:var(--c);font-family:'Share Tech Mono',monospace;overflow:auto;direction:ltr}
+#secret{display:none;margin-top:10px;background:#111100;border:1px solid gold;padding:12px;border-radius:10px;color:gold;text-align:center}
+#aiBox{border:1px solid #1e2e1e;background:#000;padding:12px;border-radius:12px;max-height:210px;overflow:auto;font-size:13px;line-height:1.7}
+#snakeCanvas{border:1px solid var(--c);background:#000;display:block;margin:0 auto;border-radius:8px;max-width:100%}
+.ach{border:1px solid #333;padding:12px;text-align:center;cursor:pointer;border-radius:10px;background:#0f1a0f}
+.faq{border:1px solid #1e2e1e;border-radius:10px;margin-bottom:8px;overflow:hidden}.faq-q{padding:12px;cursor:pointer;background:#0f1a0f;font-weight:700;font-size:13px;display:flex;justify-content:space-between}.faq-a{display:none;padding:0 12px 12px;color:#999;font-size:12px;line-height:1.7}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--c);color:#000;padding:10px 18px;border-radius:20px;font-weight:800;font-size:13px;display:none;z-index:99}
+#toTop{position:fixed;bottom:20px;left:20px;width:44px;height:44px;background:var(--c);color:#000;border:none;border-radius:50%;font-size:18px;cursor:pointer;display:none;z-index:99;font-weight:900}
+footer{padding:22px 0;text-align:center;color:#666;font-size:12px;line-height:1.8}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.nav{display:none}.name-en{font-size:28px;white-space:normal}}
 </style>
 </head>
 <body>
 <canvas id="matrix"></canvas>
-<div id="panicOverlay"><h1 style="font-size:45px">⚠ SYSTEM HACKED ⚠</h1><p>BY ESLAM KABOUS</p><button class="btn" onclick="document.getElementById('panicOverlay').style.display='none'" style="margin-top:20px;background:#fff;color:#000">RESTORE</button></div>
-<div id="hackSim"><h2>⚡ HACKING NASA - SIMULATION ⚡</h2><div id="simText"></div><button class="btn" onclick="document.getElementById('hackSim').style.display='none'">CLOSE</button></div>
+<div id="panicOverlay"><h1 style="font-size:38px">⚠ SYSTEM HACKED ⚠</h1><p>BY ESLAM KABOUS</p><button class="btn" onclick="document.getElementById('panicOverlay').style.display='none'" style="margin-top:18px;background:#fff;color:#000">RESTORE</button></div>
+<div id="hackSim"><h2>⚡ HACKING SIMULATION ⚡</h2><div id="simText"></div><button class="btn" onclick="document.getElementById('hackSim').style.display='none'">CLOSE</button></div>
+
+<div class="top"><div class="top-in"><div class="logo">KABOUS<span>_</span>SEC</div><div class="nav"><a href="#about">من أنا</a><a href="#skills">مهاراتي</a><a href="#services">خدماتي</a><a href="#projects">مشاريعي</a><a href="#faq">أسئلة</a><a href="#contact">تواصل</a></div><span style="font-size:12px;color:var(--c)" id="clock">--:--:--</span></div></div>
 
 <div class="wrap">
-<div class="top"><div class="logo">KABOUS<b>_</b>SEC</div><div class="nav"><a href="#about">ABOUT</a><a href="#projects">PROJECTS</a><a href="#services">SERVICES</a><a href="#ai">AI</a><a href="#contact">CONTACT</a></div><button class="btn" onclick="document.body.classList.toggle('red')" style="padding:6px 10px">RED MODE</button></div>
-
 <div class="hero">
 <div class="welcome" id="welcome"></div>
-
-<!-- صورتك هنا - لو رفعت me.jpg هتظهر، لو لا هيظهر EK -->
-<div class="photo-wrap">
-<div class="ring"></div><div class="ring2"></div>
-<img src="me.jpg" class="my-photo" onerror="this.style.display='none';document.getElementById('fallbackPhoto').style.display='flex'">
-<div id="fallbackPhoto" class="fallback" style="display:none;position:absolute;inset:0;z-index:2">EK</div>
-<div class="scanline"></div>
-<span class="binary-fly" style="left:-20px;top:20px">0101</span>
-<span class="binary-fly" style="right:-20px;top:60px;animation-delay:1s">1010</span>
-<span class="binary-fly" style="left:10px;bottom:0;animation-delay:2s">1100</span>
+<div class="photo-wrap"><div class="ring"></div><div class="ring2"></div><img src="me.jpg" class="my-photo" onerror="this.style.display='none';document.getElementById('fallbackPhoto').style.display='flex'"><div id="fallbackPhoto" class="fallback" style="display:none;position:absolute;inset:0;z-index:2">EK</div><div class="scanline"></div></div>
+<div class="status"><span class="dot-live"></span> متاح للعمل الآن • أرد في أقل من 5 دقائق</div>
+<h1 class="name-en">ESLAM KABOUS</h1><div class="name-ar">إسلام كابوس</div>
+<p class="job">أخصائي أمن سيبراني | مختبر اختراق أخلاقي | صائد ثغرات</p>
+<p class="desc">بساعد الشركات وأصحاب المواقع يكتشفوا الثغرات قبل ما المجرمين يستغلوها. فحص شامل + تقرير واضح + طريقة إصلاح.</p>
+<div class="stats"><div class="stat"><b><span class="count" data-to="50">0</span>+</b><span>تحدي CTF</span></div><div class="stat"><b><span class="count" data-to="30">0</span>+</b><span>موقع تم فحصه</span></div><div class="stat"><b><span class="count" data-to="15">0</span>+</b><span>ثغرة مبلغ عنها</span></div><div class="stat"><b>Top 5%</b><span>TryHackMe</span></div></div>
+<div class="btns"><a class="btn btn-fill" href="#contact">اطلب فحص موقعك ←</a><a class="btn" href="https://wa.me/201101145178" target="_blank">واتساب</a><button class="btn" onclick="speak()">🔊 صوت</button><button class="btn" onclick="startSim()">🎬 هاك سيم</button><button class="btn" onclick="document.body.classList.toggle('red')">RED MODE</button><button class="btn" onclick="toggleDark()">DARK WEB</button><button class="btn" onclick="document.getElementById('panicOverlay').style.display='flex'">🚨 PANIC</button></div>
+<p style="margin-top:12px;font-size:12px;color:#777">IP الخاص بك: <b style="color:var(--c);direction:ltr;display:inline-block" id="myip">جارٍ الكشف...</b> • زوار اليوم: <b style="color:var(--c)" id="visitors">312</b> • تهديدات محظورة: <b style="color:var(--c)" id="blocked">1284</b></p>
 </div>
 
-<!-- اسمك بزخرفة جديدة -->
-<div class="name-box">
-<div class="digital-name" id="myName"></div>
-<div class="name-line" style="width:80%"></div>
-<div class="name-line" style="width:60%;animation-delay:.5s"></div>
-</div>
-<div class="sub">— 《 E S L A M  •  K A B O U S 》 —</div>
-<div class="sub" style="letter-spacing:2px;font-size:13px;color:#fff">✦ PENETRATION TESTER ✦ ETHICAL HACKER ✦</div>
+<section id="about"><h2>من أنا؟</h2><p class="sub-title">نبذة مختصرة</p><p style="color:#ccc;font-size:14px;line-height:1.9">أنا <b style="color:var(--c)">إسلام كابوس</b> من مصر. بدأت من الشغف، واتعلمت من TryHackMe و HackTheBox. مهمتي: أكسر النظام عشان أخليه أقوى.</p><div style="margin-top:10px"><span class="tag">🇪🇬 مصر</span><span class="tag">💻 متاح عن بعد</span><span class="tag">⚡ رد سريع</span><span class="tag">🛡️ سرية تامة</span></div>
+<h3 style="margin-top:18px;font-size:14px">رحلتي</h3><div class="timeline" style="margin-top:10px"><div class="t-item"><span>2022 — البداية</span><br><b>تعلم الأساسيات</b><p>Linux - شبكات - برمجة</p></div><div class="t-item"><span>2023 — التعمق</span><br><b>TryHackMe Top 5%</b><p>أكثر من 50 تحدي CTF</p></div><div class="t-item"><span>2024 — الاحتراف</span><br><b>أول فحص مدفوع</b><p>تقرير كامل لعميل</p></div><div class="t-item"><span>2026 — الآن</span><br><b>خدمات أمنية للشركات</b><p>فحص - حماية - استشارات</p></div></div></section>
 
-<p class="desc">Welcome, Hacker. You are now inside my system.<br>Your IP: <span id="myip" style="color:var(--c)">Detecting...</span> | Visitors: <span id="visitors" style="color:var(--c)">247</span><br>I find vulnerabilities before criminals do.</p>
-<div class="btns"><a class="btn" href="#contact">CONTACT ME →</a><a class="btn" href="#services">ORDER SERVICE 💰</a><button class="btn" onclick="speak()">🔊 VOICE</button><button class="btn" onclick="startSim()">🎬 HACK SIM</button><button class="btn" onclick="document.getElementById('panicOverlay').style.display='flex'">🚨 PANIC</button></div>
-</div>
+<section><h2>خريطة هجوم مباشرة</h2><p class="sub-title">مراقبة حية</p><div id="map"></div><p style="font-size:12px;color:#888;margin-top:8px">آخر هجوم من: <b style="color:var(--c)" id="lastAttack">روسيا</b></p></section>
 
-<section id="about"><h2>[ + ] WHOAMI</h2><p style="color:#ccc;line-height:1.8;font-size:14px">I am <b style="color:var(--c)">ESLAM KABOUS</b> — Ethical Hacker & Penetration Tester. Mission: break systems to make them stronger.</p></section>
-<section><h2>[ + ] LIVE ATTACK MAP</h2><div id="map"></div><p style="font-size:11px;color:#888;margin-top:8px">● Threats blocked: <span id="blocked">1284</span></p></section>
-<section id="services"><h2>[ + ] ORDER SERVICE 💰</h2><div class="grid"><div class="card"><h3>🛡️ فحص موقعك - 500 ج</h3><p>فحص كامل + تقرير PDF.</p><button class="btn" style="margin-top:10px" onclick="order('فحص موقع - 500ج')">اطلب →</button></div><div class="card"><h3>🔒 حماية كاملة - 1000 ج</h3><p>فحص + إصلاح + حماية.</p><button class="btn" style="margin-top:10px" onclick="order('حماية كاملة - 1000ج')">اطلب →</button></div><div class="card"><h3>📞 استشارة 30 د - 300 ج</h3><p>مكالمة أشرحلك الحماية.</p><button class="btn" style="margin-top:10px" onclick="order('استشارة 300ج')">احجز →</button></div><div class="card"><h3>☕ ادعمني بقهوة</h3><p>ادعمني عشان أكمل.</p><button class="btn" style="margin-top:10px" onclick="window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز ادعمك بقهوة'))">ادعمني ☕</button></div></div></section>
-<section id="ai"><h2>[ + ] KABOUS AI 🤖</h2><div id="aiBox">🤖 <b>KABOUS AI:</b> أهلاً! اسألني: ازاي اتعلم هاكر؟<br></div><div style="display:flex;gap:8px;margin-top:8px"><input id="aiIn" placeholder="اسألني أي حاجة..." onkeydown="if(event.key==='Enter')askAI()"><button class="btn" onclick="askAI()">ASK</button></div></section>
-<section id="projects"><h2>[ + ] PROJECTS</h2><div class="proj"><div><h3>01 — Web Vulnerability Scanner</h3><p>Python tool.</p></div><span class="st">COMPLETED</span></div><div class="proj"><div><h3>02 — Phishing Detector</h3><p>Detect fake URLs.</p></div><span class="st">COMPLETED</span></div><div class="proj"><div><h3>03 — SOC Dashboard</h3><p>Real-time monitoring.</p></div><span class="st">IN PROGRESS</span></div><div class="proj"><div><h3>04 — Steganography Tool</h3><p>Hide message in image.</p></div><span class="st">COMPLETED</span></div></section>
-<section><h2>[ + ] TERMINAL // TYPE help</h2><div class="terminal" id="termOut">root@kabous:~$ Welcome, Hacker. Type <b>help</b><br></div><div style="display:flex;gap:8px;margin-top:8px"><input id="termIn" placeholder="Type: help, whoami..." onkeydown="if(event.key==='Enter')runCmd()"><button class="btn" onclick="runCmd()">RUN</button></div></section>
-<section><h2>[ + ] CTF // SECRET</h2><p style="font-size:13px;color:#aaa">Decode: <b style="color:var(--c)">S0FCQlVTMTIz</b></p><div style="display:flex;gap:8px;margin-top:10px"><input id="ctfInput" placeholder="Enter code..."><button class="btn" onclick="checkCTF()">UNLOCK</button></div><div id="secret"><h3>🎉 SECRET UNLOCKED 🎉</h3><p>You are a real hacker!</p></div><h3 style="margin-top:18px;font-size:13px">PASSWORD CHECKER</h3><input id="passIn" placeholder="Type password..." oninput="checkPass()"><p id="passOut" style="color:var(--c);font-size:12px"></p></section>
-<section><h2>[ + ] ACHIEVEMENTS 🏆</h2><div class="grid"><div class="ach">🔓<br>First Bug</div><div class="ach">🏆<br>50 CTF</div><div class="ach">💻<br>Top 5% THM</div><div class="ach">🛡️<br>Ethical Hacker</div></div></section>
-<section><h2>[ + ] TESTIMONIALS ⭐</h2><div class="grid"><div class="card"><p>"إسلام فحص موقعي ولقى ثغرة خطيرة."</p><h3>— Ahmed</h3></div><div class="card"><p>"أفضل حد يشرح الهاكر ببساطة."</p><h3>— Sara</h3></div></div></section>
-<section><h2>[ + ] SNAKE GAME 🐍</h2><canvas id="snakeCanvas" width="300" height="300"></canvas><p style="text-align:center;margin-top:8px">Score: <span id="snakeScore" style="color:var(--c)">0</span> <button class="btn" onclick="startSnake()" style="padding:6px 10px">START</button></p></section>
-<section><h2>[ + ] CV & QR</h2><div class="grid"><div class="card"><h3>📄 Download CV</h3><button class="btn" style="margin-top:10px" onclick="alert('ابعتلي واتساب وهبعتلك CV')">DOWNLOAD →</button></div><div class="card"><h3>📱 QR Code</h3><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://wagaa2004.github.io/index2.html" style="margin-top:10px;border:1px solid var(--c)"></div></div></section>
-<section id="contact"><h2>[ + ] CONTACT</h2><form onsubmit="window.location.href='https://wa.me/201101145178?text='+encodeURIComponent(this.msg.value);return false"><input placeholder="Your Name"><textarea name="msg" rows="3" placeholder="Your Message..."></textarea><button class="btn" style="width:100%">SEND VIA WHATSAPP →</button></form><p style="text-align:center;color:var(--c);margin-top:12px;font-size:12px">eslam@kabous.sec | +20 110 114 5178</p></section>
-<footer>© 2026 ESLAM KABOUS — HACK THE PLANET. <!-- kabous123 --></footer>
+<section id="skills"><h2>مهاراتي</h2><p class="sub-title">نسب حقيقية</p><div class="skill-row"><span>اختبار اختراق المواقع</span><span style="color:var(--c)">95%</span></div><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div><div class="skill-row"><span>صيد الثغرات</span><span style="color:var(--c)">90%</span></div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><div class="skill-row"><span>Python</span><span style="color:var(--c)">85%</span></div><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><div class="skill-row"><span>Linux & شبكات</span><span style="color:var(--c)">88%</span></div><div class="skill-bar"><div class="skill-fill" data-w="88"></div></div><div style="margin-top:8px"><span class="tag">Burp Suite</span><span class="tag">Nmap</span><span class="tag">OWASP</span><span class="tag">SQLi</span><span class="tag">XSS</span><span class="tag">IDOR</span><span class="tag">Kali</span></div></section>
+
+<section id="services"><h2>خدماتي 💰</h2><p class="sub-title">اطلب واتساب فوراً</p><div class="grid"><div class="card"><h3>🛡️ فحص موقعك — 500 ج</h3><p>فحص OWASP + تقرير PDF + متابعة 7 أيام.</p><button class="btn btn-fill" style="margin-top:10px;width:100%" onclick="order('فحص موقع - 500ج')">اطلب ←</button></div><div class="card"><h3>🔒 حماية كاملة — 1000 ج</h3><p>فحص + إصلاح + حماية + فحص تأكيدي.</p><button class="btn btn-fill" style="margin-top:10px;width:100%" onclick="order('حماية كاملة - 1000ج')">اطلب ←</button></div><div class="card"><h3>📞 استشارة 30 د — 300 ج</h3><p>مكالمة أشرحلك الحماية خطوة بخطوة.</p><button class="btn" style="margin-top:10px;width:100%" onclick="order('استشارة 300ج')">احجز ←</button></div><div class="card"><h3>🏢 فحص للشركات — حسب الاتفاق</h3><p>فحص شامل + تقرير للإدارة + تدريب فريقك.</p><button class="btn" style="margin-top:10px;width:100%" onclick="order('فحص شركات')">اطلب عرض سعر ←</button></div><div class="card"><h3>☕ ادعمني بقهوة</h3><p>لو استفدت من موقعي ادعمني.</p><button class="btn" style="margin-top:10px;width:100%" onclick="window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز ادعمك بقهوة ☕'))">ادعمني ☕</button></div><div class="card"><h3>📄 تحميل CV</h3><p>السيرة الذاتية كاملة.</p><button class="btn" style="margin-top:10px;width:100%" onclick="alert('ابعتلي واتساب وهبعتلك CV PDF')">تحميل CV ←</button></div></div></section>
+
+<section><h2>KABOUS AI 🤖</h2><p class="sub-title">مساعد ذكي</p><div id="aiBox">🤖 <b>KABOUS AI:</b> أهلاً! اسألني عن الأسعار أو إزاي تتعلم هاكر.<br></div><div style="display:flex;gap:8px;margin-top:8px"><input id="aiIn" placeholder="اسألني أي حاجة..." onkeydown="if(event.key==='Enter')askAI()"><button class="btn" onclick="askAI()">اسأل</button></div><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button class="btn" style="padding:6px 12px" onclick="quickAsk('بكام فحص الموقع؟')">بكام فحص الموقع؟</button><button class="btn" style="padding:6px 12px" onclick="quickAsk('ازاي اتعلم هاكر؟')">ازاي اتعلم هاكر؟</button><button class="btn" style="padding:6px 12px" onclick="quickAsk('ايه اخطر ثغرة؟')">ايه اخطر ثغرة؟</button></div></section>
+
+<section id="projects"><h2>مشاريعي</h2><p class="sub-title">أدوات بنيتها بنفسي</p><div class="proj"><div><h3>01 — أداة فحص الثغرات</h3><p>Python لفحص OWASP تلقائياً.</p></div><span class="st">مكتمل ✓</span></div><div class="proj"><div><h3>02 — كاشف الروابط المزيفة</h3><p>كشف التصيد قبل ما تدوس.</p></div><span class="st">مكتمل ✓</span></div><div class="proj"><div><h3>03 — لوحة SOC</h3><p>مراقبة تهديدات لحظية.</p></div><span class="st">قيد التطوير</span></div><div class="proj"><div><h3>04 — إخفاء رسائل</h3><p>إخفاء رسالة داخل صورة.</p></div><span class="st">مكتمل ✓</span></div></section>
+
+<section><h2>شهاداتي</h2><p class="sub-title">منصات موثوقة</p><div class="grid"><div class="card"><h3>🏆 TryHackMe — Top 5%</h3><p>أكثر من 50 غرفة.</p></div><div class="card"><h3>💻 HackTheBox</h3><p>تحديات أجهزة حقيقية.</p></div><div class="card"><h3>📜 OWASP</h3><p>أخطر 10 ثغرات.</p></div><div class="card"><h3>🛡️ CTF 50+</h3><p>مسابقات Capture The Flag.</p></div></div></section>
+
+<section><h2>إنجازاتي 🏆</h2><p class="sub-title">دوس على أي إنجاز</p><div class="grid"><div class="ach" onclick="showToast('🔓 أول ثغرة - تم فتحها!')">🔓<br>أول ثغرة</div><div class="ach" onclick="showToast('🏆 50 CTF - بطل!')">🏆<br>50 CTF</div><div class="ach" onclick="showToast('💻 Top 5% - ممتاز!')">💻<br>Top 5% THM</div><div class="ach" onclick="showToast('🛡️ هاكر أخلاقي')">🛡️<br>هاكر أخلاقي</div></div></section>
+
+<section><h2>آراء العملاء ⭐</h2><p class="sub-title">ناس اشتغلت معايا</p><div class="grid"><div class="card"><p>"إسلام فحص متجري ولقى ثغرة كانت هتكلفني كتير. التقرير واضح جداً."</p><h3 style="margin-top:8px">— أحمد، صاحب متجر</h3><p style="color:gold">⭐⭐⭐⭐⭐</p></div><div class="card"><p>"شرحلي كل حاجة ببساطة من غير تعقيد."</p><h3 style="margin-top:8px">— سارة، صاحبة موقع</h3><p style="color:gold">⭐⭐⭐⭐⭐</p></div></div></section>
+
+<section><h2>جرب بنفسك — التيرمينال</h2><p class="sub-title">اكتب help واضغط Enter</p><div class="terminal" id="termOut">root@kabous:~$ Welcome. Type help<br></div><div style="display:flex;gap:8px;margin-top:8px"><input id="termIn" placeholder="Type: help, whoami, contact..." onkeydown="if(event.key==='Enter')runCmd()" style="direction:ltr;text-align:left"><button class="btn" onclick="runCmd()">تشغيل</button></div></section>
+
+<section><h2>تحدي CTF + فحص كلمة السر</h2><p class="sub-title">فك الشفرة: <b style="color:var(--c);direction:ltr;display:inline-block">S0FCQlVTMTIz</b> — Base64</p><div style="display:flex;gap:8px"><input id="ctfInput" placeholder="اكتب الكود السري..." style="direction:ltr;text-align:left"><button class="btn" onclick="checkCTF()">فتح</button></div><div id="secret">🎉 صح! انت هاكر حقيقي. ابعتلي كلمة SECRET واتساب.</div><h3 style="margin-top:14px;font-size:14px">جرب كلمة سر:</h3><input id="passIn" placeholder="اكتب كلمة سر..." oninput="checkPass()"><p id="passOut" style="color:var(--c);font-size:13px"></p></section>
+
+<section><h2>لعبة الثعبان 🐍</h2><p class="sub-title">العب بالأسهم</p><canvas id="snakeCanvas" width="300" height="300"></canvas><p style="text-align:center;margin-top:8px">النقاط: <b id="snakeScore" style="color:var(--c)">0</b> <button class="btn" onclick="startSnake()" style="padding:6px 14px;margin-right:8px">ابدأ اللعب</button></p></section>
+
+<section id="faq"><h2>أسئلة شائعة</h2><p class="sub-title">أكتر أسئلة بتتسألي</p><div class="faq"><div class="faq-q" onclick="toggleFaq(this)">الفحص بياخد وقت قد ايه؟ <span>+</span></div><div class="faq-a">من 24 لـ 72 ساعة حسب حجم موقعك. وهبعتلك تقرير PDF.</div></div><div class="faq"><div class="faq-q" onclick="toggleFaq(this)">هل الفحص آمن على موقعي؟ <span>+</span></div><div class="faq-a">أيوه 100%. فحص غير تدميري ومش بيأثر على موقعك.</div></div><div class="faq"><div class="faq-q" onclick="toggleFaq(this)">بتدفع ازاي؟ <span>+</span></div><div class="faq-a">فودافون كاش أو انستاباي. 50% قبل و 50% بعد التقرير.</div></div><div class="faq"><div class="faq-q" onclick="toggleFaq(this)">لو ملقيتش ثغرات؟ <span>+</span></div><div class="faq-a">هبعتلك تقرير يأكد إن موقعك آمن + نصائح حماية.</div></div></section>
+
+<section id="contact"><h2>تواصل معي</h2><p class="sub-title">ردي في أقل من 5 دقائق</p><form onsubmit="return sendWA(this)"><input id="cName" placeholder="اسمك *"><input id="cPhone" placeholder="رقم واتسابك (اختياري)"><textarea id="cMsg" rows="4" placeholder="رسالتك... *"></textarea><button class="btn btn-fill" style="width:100%">إرسال عبر واتساب ←</button><p id="formErr" style="color:#ff5555;font-size:13px;margin-top:8px;display:none"></p></form><div style="text-align:center;margin-top:14px;font-size:13px;color:#999"><p>📱 واتساب: <b style="color:var(--c);direction:ltr;display:inline-block">+20 110 114 5178</b> <button class="btn" style="padding:4px 10px" onclick="copyPhone()">نسخ</button> <button class="btn" style="padding:4px 10px" onclick="shareSite()">🔗 مشاركة</button></p><p style="margin-top:6px">📧 <b style="direction:ltr;display:inline-block">eslam@kabous.sec</b></p><p style="margin-top:8px">📱 QR لموقعي:</p><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://wagaa2004.github.io/index2.html" style="margin-top:6px;border:1px solid var(--c);border-radius:8px"></div></section>
+
+<footer>© 2026 إسلام كابوس — جميع الحقوق محفوظة.<br>موقع حقيقي 100% — صُنع بشغف في مصر 🇪🇬<br><span style="direction:ltr;display:inline-block">ESLAM KABOUS | Ethical Hacker</span></footer>
 </div>
+<div id="toast">تم ✓</div><button id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <script>
-// اسمك بيتكتب حرف حرف بزخرفة جديدة
-let nameText="ESLAM KABOUS";let nameBox=document.getElementById('myName');nameText.split('').forEach((ch,i)=>{let s=document.createElement('span');s.textContent=ch===' '?' ':ch;s.style.animationDelay=(i*0.12)+'s';nameBox.appendChild(s);});
-var c=document.getElementById("matrix"),ctx=c.getContext("2d");c.height=innerHeight;c.width=innerWidth;var chars="01ESLAMKABOUS$#@01";var cols=Math.floor(c.width/16);var drops=[];for(var i=0;i<cols;i++)drops[i]=1;setInterval(()=>{ctx.fillStyle="rgba(0,0,0,0.05)";ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle="#00ff41";ctx.font="14px monospace";for(var i=0;i<drops.length;i++){ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,drops[i]*16);if(drops[i]*16>c.height&&Math.random()>0.975)drops[i]=0;drops[i]++;}},50);
-let lines=["> WELCOME, HACKER...","> ACCESS GRANTED...","> USER: ESLAM KABOUS — WELCOME BACK."],li=0,ci=0;let wel=document.getElementById('welcome');function typeWel(){if(li>=lines.length)return;if(ci<=lines[li].length){wel.innerHTML=lines.slice(0,li).join("<br>")+"<br>"+lines[li].slice(0,ci);ci++;setTimeout(typeWel,30);}else{li++;ci=0;setTimeout(typeWel,300);}}typeWel();
-fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>document.getElementById('myip').textContent=d.ip).catch(()=>document.getElementById('myip').textContent='Hidden - VPN');
-let map=document.getElementById('map');for(let i=0;i<14;i++){let d=document.createElement('div');d.className='dot';d.style.left=Math.random()*90+'%';d.style.top=Math.random()*85+'%';map.appendChild(d);}setInterval(()=>{document.getElementById('blocked').textContent=parseInt(document.getElementById('blocked').textContent)+1;document.getElementById('visitors').textContent=parseInt(document.getElementById('visitors').textContent)+1;},3000);
+// ساعة مصر + ترحيب
+function tick(){var d=new Date();document.getElementById('clock').textContent=d.toLocaleTimeString('ar-EG',{timeZone:'Africa/Cairo',hour:'2-digit',minute:'2-digit',second:'2-digit'});}setInterval(tick,1000);tick();
+let lines=["> WELCOME, HACKER...","> ACCESS GRANTED...","> USER: ESLAM KABOUS - WELCOME BACK."],li=0,ci=0;let wel=document.getElementById('welcome');function typeWel(){if(li>=lines.length)return;if(ci<=lines[li].length){wel.innerHTML=lines.slice(0,li).join("<br>")+"<br>"+lines[li].slice(0,ci);ci++;setTimeout(typeWel,25);}else{li++;ci=0;setTimeout(typeWel,250);}}typeWel();
+// ماتريكس
+var c=document.getElementById("matrix"),ctx=c.getContext("2d");c.height=innerHeight;c.width=innerWidth;var chars="01ESLAMKABOUS$#@01";var cols=Math.floor(c.width/16);var drops=[];for(var i=0;i<cols;i++)drops[i]=1;setInterval(function(){ctx.fillStyle="rgba(0,0,0,0.05)";ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle="#00ff41";ctx.font="14px monospace";for(var i=0;i<drops.length;i++){ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,drops[i]*16);if(drops[i]*16>c.height&&Math.random()>0.975)drops[i]=0;drops[i]++;}},50);
+// عدادات + مهارات
+document.querySelectorAll('.count').forEach(function(el){var to=parseInt(el.getAttribute('data-to'));var cur=0;var iv=setInterval(function(){cur++;el.textContent=cur;if(cur>=to)clearInterval(iv);},30);});
+window.addEventListener('scroll',function(){document.querySelectorAll('.skill-fill').forEach(function(f){var r=f.getBoundingClientRect();if(r.top<window.innerHeight){f.style.width=f.getAttribute('data-w')+'%';}});document.getElementById('toTop').style.display=window.scrollY>500?'block':'none';});
+// IP + خريطة
+fetch('https://api.ipify.org?format=json').then(function(r){return r.json();}).then(function(d){document.getElementById('myip').textContent=d.ip;}).catch(function(){document.getElementById('myip').textContent='Hidden - VPN';});
+let map=document.getElementById('map');for(let i=0;i<14;i++){let d=document.createElement('div');d.className='dot';d.style.left=Math.random()*90+'%';d.style.top=Math.random()*85+'%';map.appendChild(d);}
+let countries=["روسيا","أمريكا","الصين","البرازيل","الهند","كوريا"];setInterval(function(){document.getElementById('blocked').textContent=parseInt(document.getElementById('blocked').textContent)+1;document.getElementById('visitors').textContent=parseInt(document.getElementById('visitors').textContent)+1;document.getElementById('lastAttack').textContent=countries[Math.floor(Math.random()*countries.length)];},3000);
+function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(function(){t.style.display='none';},2500);}
+function copyPhone(){if(navigator.clipboard){navigator.clipboard.writeText('201101145178').then(function(){showToast('تم نسخ الرقم ✓');});}else{showToast('الرقم: 201101145178');}}
+function shareSite(){if(navigator.share){navigator.share({title:'إسلام كابوس',url:location.href});}else if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(function(){showToast('تم نسخ رابط الموقع ✓');});}}
+function toggleDark(){document.body.classList.toggle('darkweb');showToast(document.body.classList.contains('darkweb')?'دخلت الدارك ويب - انت مجهول الآن':'رجعت للوضع العادي');}
 function speak(){let u=new SpeechSynthesisUtterance("Welcome back, Eslam. System secure.");speechSynthesis.speak(u);}
-function order(s){window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز اطلب: '+s));}
-function startSim(){document.getElementById('hackSim').style.display='block';let t=document.getElementById('simText');let l2=["Connecting to NASA...","Bypassing Firewall...","Injecting Payload...","ACCESS GRANTED - JUST KIDDING! Simulation by Eslam"];let i=0;t.innerHTML="";let iv=setInterval(()=>{if(i>=l2.length){clearInterval(iv);return;}t.innerHTML+="<br>> "+l2[i];i++;},800);}
-function askAI(){let inp=document.getElementById('aiIn');let q=inp.value.toLowerCase();let box=document.getElementById('aiBox');let ans="";if(q.includes("اتعلم")||q.includes("learn"))ans="ابدأ بـ TryHackMe وبعدين Python و Linux و OWASP.";else if(q.includes("بكام")||q.includes("فحص"))ans="فحص الموقع 500ج، حماية كاملة 1000ج.";else if(q.includes("مين"))ans="أنا إسلام قابوس، Ethical Hacker من مصر.";else ans="ابعتلي واتساب +20 110 114 5178 وهرد عليك.";box.innerHTML+="👤 <b>You:</b> "+inp.value+"<br>🤖 <b>AI:</b> "+ans+"<br><br>";inp.value="";}
-function runCmd(){let inp=document.getElementById('termIn');let cmd=inp.value.toLowerCase().trim();let out=document.getElementById('termOut');let res="";if(cmd==="help")res="Commands: whoami, hack, skills, contact, clear, kabous";else if(cmd==="whoami")res="eslam_kabous — ethical_hacker";else if(cmd==="contact")res="WhatsApp: +20 110 114 5178";else if(cmd==="clear"){out.innerHTML="root@kabous:~$ ";inp.value="";return;}else res="Command not found: "+cmd;out.innerHTML+="root@kabous:~$ "+cmd+"<br>"+res+"<br>";inp.value="";}
-function checkCTF(){let v=document.getElementById('ctfInput').value.trim();if(v==="kabous123"){document.getElementById('secret').style.display='block';alert("ACCESS GRANTED!");}else alert("Wrong code!");}
-function checkPass(){let p=document.getElementById('passIn').value;let o=document.getElementById('passOut');if(!p){o.textContent="";return;}if(p.length<6)o.textContent="🔴 WEAK";else if(p.length<10)o.textContent="🟡 MEDIUM";else o.textContent="🟢 STRONG";}
-let snake,food,dx,dy,score,snakeInt;function startSnake(){let cv=document.getElementById('snakeCanvas');let ctx2=cv.getContext('2d');snake=[{x:150,y:150}];food={x:60,y:60};dx=15;dy=0;score=0;clearInterval(snakeInt);snakeInt=setInterval(()=>{let h={x:snake[0].x+dx,y:snake[0].y+dy};if(h.x<0)h.x=285;if(h.x>285)h.x=0;if(h.y<0)h.y=285;if(h.y>285)h.y=0;snake.unshift(h);if(h.x===food.x&&h.y===food.y){score+=10;document.getElementById('snakeScore').textContent=score;food={x:Math.floor(Math.random()*20)*15,y:Math.floor(Math.random()*20)*15};}else snake.pop();ctx2.fillStyle="#000";ctx2.fillRect(0,0,300,300);ctx2.fillStyle="#00ff41";snake.forEach(s=>ctx2.fillRect(s.x,s.y,14,14));ctx2.fillStyle="red";ctx2.fillRect(food.x,food.y,14,14);},120);}document.addEventListener('keydown',e=>{if(e.key==='ArrowUp'){dx=0;dy=-15;}if(e.key==='ArrowDown'){dx=0;dy=15;}if(e.key==='ArrowLeft'){dx=-15;dy=0;}if(e.key==='ArrowRight'){dx=15;dy=0;}});
+function order(s){window.open('https://wa.me/201101145178?text='+encodeURIComponent('أهلاً إسلام، عايز أطلب: '+s+'\nاسمي: \nرابط موقعي: '));}
+function sendWA(f){var n=document.getElementById('cName').value.trim();var m=document.getElementById('cMsg').value.trim();var e=document.getElementById('formErr');if(!n){e.textContent='من فضلك اكتب اسمك أولاً.';e.style.display='block';return false;}if(!m){e.textContent='من فضلك اكتب رسالتك.';e.style.display='block';return false;}e.style.display='none';var p=document.getElementById('cPhone').value.trim();window.open('https://wa.me/201101145178?text='+encodeURIComponent('الاسم: '+n+'\nرقمي: '+p+'\nالرسالة: '+m));return false;}
+function toggleFaq(el){var a=el.nextElementSibling;var open=a.style.display==='block';document.querySelectorAll('.faq-a').forEach(function(x){x.style.display='none';});a.style.display=open?'none':'block';el.querySelector('span').textContent=open?'+':'-';}
+function startSim(){document.getElementById('hackSim').style.display='block';let t=document.getElementById('simText');let l2=["Connecting to NASA...","Bypassing Firewall...","Injecting Payload...","ACCESS GRANTED - JUST KIDDING! Simulation by Eslam"];let i=0;t.innerHTML="";let iv=setInterval(function(){if(i>=l2.length){clearInterval(iv);return;}t.innerHTML+="<br>> "+l2[i];i++;},800);}
+function quickAsk(q){document.getElementById('aiIn').value=q;askAI();}
+function askAI(){var inp=document.getElementById('aiIn');var q=inp.value.toLowerCase().trim();if(!q)return;var box=document.getElementById('aiBox');var ans='';if(q.indexOf('بكام')>-1||q.indexOf('سعر')>-1||q.indexOf('فحص')>-1)ans='فحص الموقع 500ج، حماية كاملة 1000ج، استشارة 300ج. اطلب من قسم الخدمات.';else if(q.indexOf('اتعلم')>-1||q.indexOf('تعلم')>-1)ans='ابدأ: شبكات -> Linux -> Python -> OWASP -> TryHackMe. ابعتلي واتساب لخطة كاملة.';else if(q.indexOf('ثغرة')>-1||q.indexOf('اخطر')>-1)ans='أخطر الثغرات: SQLi و XSS و IDOR و Broken Auth - كلهم في OWASP Top 10.';else if(q.indexOf('دفع')>-1||q.indexOf('فودافون')>-1)ans='الدفع فودافون كاش أو انستاباي. 50% قبل و 50% بعد التقرير.';else if(q.indexOf('مين')>-1)ans='أنا إسلام كابوس، أخصائي أمن سيبراني من مصر.';else ans='سؤال ممتاز! ابعتلي واتساب +20 110 114 5178 وهرد عليك.';box.innerHTML+='👤 <b>أنت:</b> '+inp.value+'<br>🤖 <b>AI:</b> '+ans+'<br><br>';inp.value='';box.scrollTop=box.scrollHeight;}
+function runCmd(){var inp=document.getElementById('termIn');var cmd=inp.value.toLowerCase().trim();var out=document.getElementById('termOut');var res='';if(cmd==='help')res='Commands: whoami, skills, contact, price, clear';else if(cmd==='whoami')res='eslam_kabous - Ethical Hacker from Egypt';else if(cmd==='skills')res='Web Pentesting, Bug Bounty, Python, Linux';else if(cmd==='contact')res='WhatsApp: +20 110 114 5178';else if(cmd==='price')res='Scan: 500 EGP | Full: 1000 EGP';else if(cmd==='clear'){out.innerHTML='root@kabous:~$ ';inp.value='';return;}else if(!cmd)return;else res='Command not found: '+cmd;out.innerHTML+='root@kabous:~$ '+cmd+'<br>'+res+'<br>';inp.value='';out.scrollTop=out.scrollHeight;}
+function checkCTF(){var v=document.getElementById('ctfInput').value.trim();if(v==='kabous123'){document.getElementById('secret').style.display='block';showToast('صح! انت هاكر حقيقي 🎉');}else{showToast('كود غلط - فك الشفرة');}}
+function checkPass(){var p=document.getElementById('passIn').value;var o=document.getElementById('passOut');if(!p){o.textContent='';return;}if(p.length<6)o.textContent='🔴 ضعيفة - تتكسر في ثانية!';else if(p.length<10)o.textContent='🟡 متوسطة';else o.textContent='🟢 قوية - ممتازة!';}
+var snake,food,dx,dy,score,snakeInt;function startSnake(){var cv=document.getElementById('snakeCanvas');var ctx2=cv.getContext('2d');snake=[{x:150,y:150}];food={x:60,y:60};dx=15;dy=0;score=0;clearInterval(snakeInt);snakeInt=setInterval(function(){var h={x:snake[0].x+dx,y:snake[0].y+dy};if(h.x<0)h.x=285;if(h.x>285)h.x=0;if(h.y<0)h.y=285;if(h.y>285)h.y=0;snake.unshift(h);if(h.x===food.x&&h.y===food.y){score+=10;document.getElementById('snakeScore').textContent=score;food={x:Math.floor(Math.random()*20)*15,y:Math.floor(Math.random()*20)*15};}else snake.pop();ctx2.fillStyle='#000';ctx2.fillRect(0,0,300,300);ctx2.fillStyle='#00ff41';snake.forEach(function(s){ctx2.fillRect(s.x,s.y,14,14);});ctx2.fillStyle='red';ctx2.fillRect(food.x,food.y,14,14);},120);}document.addEventListener('keydown',function(e){if(e.key==='ArrowUp'){dx=0;dy=-15;}if(e.key==='ArrowDown'){dx=0;dy=15;}if(e.key==='ArrowLeft'){dx=-15;dy=0;}if(e.key==='ArrowRight'){dx=15;dy=0;}});
 </script>
 </body>
 </html>
