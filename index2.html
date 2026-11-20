@@ -1,108 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ESLAM KABOUS | HACKER</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#e8e8e8;font-family:'JetBrains Mono',monospace;overflow-x:hidden}
-canvas#matrix{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:.25}
-.scan{position:fixed;left:0;right:0;height:2px;background:#00ff41;box-shadow:0 0 20px #00ff41;z-index:1;animation:scan 6s linear infinite;opacity:.6}
+body{background:#000;color:#e8e8e8;font-family:'JetBrains Mono',monospace;overflow-x:hidden;cursor:crosshair}
+body.red{--c:#ff0033}body.red .green{color:#ff0033!important;border-color:#ff0033!important}
+:root{--c:#00ff41}
+canvas#matrix{position:fixed;inset:0;z-index:0;opacity:.22}
+.scan{position:fixed;left:0;right:0;height:2px;background:var(--c);box-shadow:0 0 20px var(--c);z-index:1;animation:scan 6s linear infinite;opacity:.5}
 @keyframes scan{0%{top:0}100%{top:100%}}
-.wrap{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 20px}
-.top{border-bottom:1px solid #1a2a1a;display:flex;justify-content:space-between;padding:16px 0;align-items:center}
-.logo{font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:2px;font-size:15px}
-.logo b{color:#00ff41}
-.nav{display:flex;gap:18px;font-size:12px;color:#888}
-.nav a{color:#aaa;text-decoration:none}
-.nav a:hover{color:#00ff41}
-.hero{text-align:center;padding:70px 0 40px}
-.welcome-box{border:1px solid #00ff41;background:rgba(0,255,65,.06);padding:16px;max-width:620px;margin:0 auto 28px;text-align:left;box-shadow:0 0 30px rgba(0,255,65,.15)}
-.welcome-box p{font-family:'Share Tech Mono',monospace;color:#00ff41;font-size:16px;min-height:24px}
-.welcome-box span{color:#fff}
-.avatar{width:150px;height:150px;margin:0 auto 20px;border:2px solid #00ff41;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:55px;font-weight:900;color:#00ff41;position:relative;overflow:hidden;background:#001100;box-shadow:0 0 40px rgba(0,255,65,.4);animation:glow 2s ease-in-out infinite}
+/* BOOT */
+#boot{position:fixed;inset:0;background:#000;z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:'Share Tech Mono',monospace;color:var(--c);font-size:18px;text-align:center;padding:20px}
+#bootBar{width:260px;height:10px;border:1px solid var(--c);margin-top:16px}
+#bootFill{height:100%;width:0%;background:var(--c);box-shadow:0 0 15px var(--c)}
+.wrap{position:relative;z-index:2;max-width:940px;margin:0 auto;padding:0 18px}
+.top{border-bottom:1px solid #1a2a1a;display:flex;justify-content:space-between;padding:14px 0;align-items:center;flex-wrap:wrap;gap:10px}
+.logo{font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:2px}
+.logo b{color:var(--c)}
+.nav{display:flex;gap:14px;font-size:11px;flex-wrap:wrap}.nav a{color:#aaa;text-decoration:none}.nav a:hover{color:var(--c)}
+.hero{text-align:center;padding:60px 0 30px}
+.welcome{border:1px solid var(--c);background:rgba(0,255,65,.06);padding:14px;max-width:640px;margin:0 auto 22px;text-align:left;min-height:88px;font-family:'Share Tech Mono',monospace;color:var(--c)}
+.avatar{width:140px;height:140px;margin:0 auto 16px;border:2px solid var(--c);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:50px;font-weight:900;color:var(--c);background:#001100;box-shadow:0 0 40px rgba(0,255,65,.4);animation:glow 2s infinite;position:relative;overflow:hidden}
 @keyframes glow{0%,100%{box-shadow:0 0 20px rgba(0,255,65,.3)}50%{box-shadow:0 0 50px rgba(0,255,65,.7)}}
-.avatar:after{content:"";position:absolute;left:0;right:0;height:3px;background:#00ff41;animation:scan2 2.5s linear infinite}
+.avatar:after{content:"";position:absolute;left:0;right:0;height:3px;background:var(--c);animation:scan2 2.5s linear infinite}
 @keyframes scan2{0%{top:-10px}100%{top:110%}}
-/* GLITCH NAME */
-.glitch{font-family:'Orbitron',sans-serif;font-size:52px;font-weight:900;letter-spacing:3px;position:relative;color:#fff;line-height:1}
-.glitch:before,.glitch:after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden}
-.glitch:before{color:#00ff41;z-index:-1;animation:gl1 2s infinite linear alternate}
-.glitch:after{color:#ff004c;z-index:-2;animation:gl2 2s infinite linear alternate}
-@keyframes gl1{0%{transform:translate(0)}20%{transform:translate(-3px,2px)}40%{transform:translate(3px,-1px)}60%{transform:translate(-2px,1px)}80%{transform:translate(2px,2px)}100%{transform:translate(0)}}
-@keyframes gl2{0%{transform:translate(0)}20%{transform:translate(3px,-2px)}40%{transform:translate(-3px,1px)}60%{transform:translate(2px,-1px)}80%{transform:translate(-2px,-2px)}100%{transform:translate(0)}}
-.sub{font-family:'Share Tech Mono',monospace;color:#00ff41;letter-spacing:4px;margin-top:12px;font-size:16px}
-.desc{color:#aaa;max-width:600px;margin:18px auto;line-height:1.7;font-size:15px}
-.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
-.btn{padding:13px 22px;border:1px solid #00ff41;background:transparent;color:#00ff41;font-family:'JetBrains Mono',monospace;font-weight:700;cursor:pointer;text-decoration:none;font-size:13px;transition:.3s}
-.btn:hover{background:#00ff41;color:#000;box-shadow:0 0 25px #00ff41}
-.btn-white{background:#fff;color:#000;border-color:#fff}
-.btn-white:hover{background:#00ff41;border-color:#00ff41}
-section{padding:40px 0;border-top:1px solid #1a1a1a}
-h2{font-family:'Orbitron',sans-serif;font-size:14px;letter-spacing:3px;color:#00ff41;margin-bottom:20px}
-h2:before{content:"[ + ] "}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.card{border:1px solid #222;padding:18px;background:rgba(0,20,0,.4);transition:.3s}
-.card:hover{border-color:#00ff41;transform:translateY(-3px);box-shadow:0 0 20px rgba(0,255,65,.2)}
-.card h3{font-size:15px;margin-bottom:8px;color:#fff}
-.card p{font-size:13px;color:#999;line-height:1.6}
-.tag{display:inline-block;border:1px solid #333;padding:3px 7px;font-size:11px;margin:6px 4px 0 0;color:#00ff41}
-.proj{border:1px solid #222;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;gap:12px;background:rgba(0,20,0,.3)}
-.proj h3{font-size:15px}
-.proj p{font-size:13px;color:#999;margin-top:6px}
-.st{color:#00ff41;font-size:11px;white-space:nowrap}
-.terminal2{border:1px solid #00ff41;background:#000;padding:18px;font-family:'Share Tech Mono',monospace;font-size:14px;line-height:1.8;color:#00ff41}
-.terminal2 b{color:#fff}
-input,textarea{width:100%;background:#000;border:1px solid #333;color:#fff;padding:12px;margin-bottom:10px;font-family:'JetBrains Mono',monospace}
-input:focus,textarea:focus{border-color:#00ff41;outline:none}
-footer{padding:24px 0;text-align:center;color:#555;font-size:12px}
-@media(max-width:650px){.glitch{font-size:32px}.grid{grid-template-columns:1fr}.nav{display:none}}
+.glitch{font-family:'Orbitron',sans-serif;font-size:48px;font-weight:900;letter-spacing:2px;position:relative;color:#fff;line-height:1}
+.glitch:before,.glitch:after{content:attr(data-text);position:absolute;left:0;top:0;width:100%}
+.glitch:before{color:var(--c);animation:gl1 2s infinite alternate}.glitch:after{color:#ff004c;animation:gl2 2s infinite alternate}
+@keyframes gl1{0%{transform:translate(0)}50%{transform:translate(-3px,2px)}100%{transform:translate(2px,-1px)}}
+@keyframes gl2{0%{transform:translate(0)}50%{transform:translate(3px,-2px)}100%{transform:translate(-2px,1px)}}
+.sub{font-family:'Share Tech Mono',monospace;color:var(--c);letter-spacing:3px;margin-top:10px}
+.desc{color:#aaa;max-width:620px;margin:16px auto;line-height:1.7;font-size:14px}
+.btn{padding:12px 18px;border:1px solid var(--c);background:transparent;color:var(--c);font-family:'JetBrains Mono',monospace;font-weight:700;cursor:pointer;text-decoration:none;font-size:12px;display:inline-block;transition:.2s}
+.btn:hover{background:var(--c);color:#000;box-shadow:0 0 20px var(--c)}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+section{padding:38px 0;border-top:1px solid #1a1a1a}
+h2{font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:2px;color:var(--c);margin-bottom:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{border:1px solid #222;padding:16px;background:rgba(0,20,0,.4)}.card:hover{border-color:var(--c);transform:translateY(-2px)}
+.card h3{font-size:14px;margin-bottom:6px}.card p{font-size:12px;color:#999;line-height:1.6}
+.tag{display:inline-block;border:1px solid #333;padding:3px 6px;font-size:10px;margin:5px 3px 0 0;color:var(--c)}
+.proj{border:1px solid #222;padding:16px;margin-bottom:10px;display:flex;justify-content:space-between;gap:10px}.proj h3{font-size:14px}.proj p{font-size:12px;color:#999;margin-top:5px}.st{color:var(--c);font-size:10px;white-space:nowrap}
+.terminal{border:1px solid var(--c);background:#000;padding:14px;font-family:'Share Tech Mono',monospace;font-size:13px;line-height:1.7;color:var(--c);min-height:150px;overflow:auto}
+input,textarea{width:100%;background:#000;border:1px solid #333;color:#fff;padding:11px;margin-bottom:9px;font-family:'JetBrains Mono',monospace}input:focus{border-color:var(--c);outline:none}
+#map{height:180px;border:1px solid #222;position:relative;overflow:hidden;background:#020a02}
+.dot{position:absolute;width:8px;height:8px;background:var(--c);border-radius:50%;box-shadow:0 0 12px var(--c);animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+#panicOverlay{display:none;position:fixed;inset:0;background:#ff0000;z-index:999;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:#fff;font-family:'Orbitron',sans-serif}
+#secret{display:none;border:1px solid gold;padding:16px;background:#111100;color:gold;text-align:center}
+footer{padding:22px 0;text-align:center;color:#555;font-size:11px}
+@media(max-width:650px){.glitch{font-size:30px}.grid{grid-template-columns:1fr}.nav{display:none}}
 </style>
 </head>
 <body>
+<div id="boot"><div>KABOUS_SEC SYSTEM v7.0</div><div id="bootText" style="margin-top:10px">Loading System...</div><div id="bootBar"><div id="bootFill"></div></div></div>
 <canvas id="matrix"></canvas><div class="scan"></div>
+<div id="panicOverlay"><h1 style="font-size:50px">⚠ SYSTEM HACKED ⚠</h1><p>BY ESLAM KABOUS</p><button class="btn" onclick="document.getElementById('panicOverlay').style.display='none'" style="margin-top:20px;background:#fff;color:#000;border-color:#fff">RESTORE SYSTEM</button></div>
+
 <div class="wrap">
-<div class="top"><div class="logo">KABOUS<b>_</b>SEC</div><div class="nav"><a href="#about">ABOUT</a><a href="#skills">SKILLS</a><a href="#projects">PROJECTS</a><a href="#contact">CONTACT</a></div></div>
+<div class="top"><div class="logo">KABOUS<b>_</b>SEC</div><div class="nav"><a href="#about">ABOUT</a><a href="#skills">SKILLS</a><a href="#projects">PROJECTS</a><a href="#terminal">TERMINAL</a><a href="#ctf">CTF</a><a href="#contact">CONTACT</a></div><button class="btn" onclick="document.body.classList.toggle('red');this.textContent=document.body.classList.contains('red')?'GREEN MODE':'RED MODE'" style="padding:6px 10px">RED MODE</button></div>
 
 <div class="hero">
-<div class="welcome-box"><p id="type1"></p><p id="type2"></p><p id="type3"></p></div>
+<div class="welcome" id="welcome"></div>
 <div class="avatar">EK</div>
 <h1 class="glitch" data-text="ESLAM KABOUS">ESLAM KABOUS</h1>
 <div class="sub">— PENETRATION TESTER • ETHICAL HACKER —</div>
-<p class="desc">Welcome, Hacker. You are now inside my system.<br>I find vulnerabilities before criminals do. Web Pentesting • Bug Bounty • Network Security.</p>
-<p style="color:#666;font-size:13px;margin-top:8px">Egypt | Available for Security Audits</p>
-<div class="btns"><a class="btn" href="#contact">CONTACT ME →</a><a class="btn btn-white" href="#projects">VIEW PROJECTS</a><a class="btn" href="https://wa.me/201143626099">WHATSAPP</a></div>
+<p class="desc">Welcome, Hacker. You are now inside my system.<br>Your IP: <span id="myip" style="color:var(--c)">Detecting...</span> | Location: <span id="myloc">Egypt</span><br>I find vulnerabilities before criminals do.</p>
+<div class="btns"><a class="btn" href="#contact">CONTACT ME →</a><a class="btn" href="#projects">VIEW PROJECTS</a><button class="btn" onclick="hackMe()">⚡ HACK ME</button><button class="btn" onclick="document.getElementById('panicOverlay').style.display='flex'">🚨 PANIC</button></div>
+<div id="hackBar" style="display:none;margin-top:16px"><div style="border:1px solid var(--c);height:14px"><div id="hackFill" style="height:100%;width:0%;background:var(--c)"></div></div><p id="hackText" style="color:var(--c);margin-top:6px;font-size:12px">Hacking...</p></div>
 </div>
 
-<section id="about"><h2>WHOAMI</h2><p style="color:#ccc;line-height:1.8">I am <b style="color:#00ff41">ESLAM KABOUS</b> — Ethical Hacker & Penetration Tester. My mission is to break systems to make them stronger. I specialize in Web Application Security, Vulnerability Assessment a201101145178n>
+<section id="about"><h2>[ + ] WHOAMI</h2><p style="color:#ccc;line-height:1.8;font-size:14px">I am <b style="color:var(--c)">ESLAM KABOUS</b> — Ethical Hacker & Penetration Tester. Mission: break systems to make them stronger. Web Security • Bug Bounty • Network Security.</p></section>
 
-<section id="skills"><h2>SKILLS // ARSENAL</h2><div class="grid">
-<div class="card"><h3>WEB PENTESTING</h3><p>OWASP Top 10, SQLi, XSS, SSRF, IDOR, Auth Bypass</p><span class="tag">Burp Suite</span><span class="tag">Nmap</span><span class="tag">OWASP</span></div>
-<div class="card"><h3>NETWORK & LINUX</h3><p>Kali Linux, Bash, Enumeration, Scanning</p><span class="tag">Kali</span><span class="tag">Bash</span><span class="tag">Wireshark</span></div>
-<div class="card"><h3>PROGRAMMING</h3><p>Python for tools & automation, JS, HTML/CSS</p><span class="tag">Python</span><span class="tag">JavaScript</span></div>
-<div class="card"><h3>BUG BOUNTY</h3><p>Recon, Reporting, Responsible Disclosure</p><span class="tag">Recon</span><span class="tag">Reporting</span></div>
+<section><h2>[ + ] LIVE ATTACK MAP</h2><div id="map"></div><p style="font-size:11px;color:#888;margin-top:8px">● Live threats blocked: <span id="blocked">1284</span> — Updated every second</p></section>
+
+<section id="skills"><h2>[ + ] SKILLS // ARSENAL</h2><div class="grid">
+<div class="card"><h3>WEB PENTESTING</h3><p>OWASP Top 10, SQLi, XSS, SSRF, IDOR</p><span class="tag">Burp Suite</span><span class="tag">Nmap</span><span class="tag">OWASP</span></div>
+<div class="card"><h3>NETWORK & LINUX</h3><p>Kali, Bash, Enumeration</p><span class="tag">Kali</span><span class="tag">Bash</span><span class="tag">Wireshark</span></div>
+<div class="card"><h3>PROGRAMMING</h3><p>Python for tools & automation</p><span class="tag">Python</span><span class="tag">JavaScript</span></div>
+<div class="card"><h3>BUG BOUNTY</h3><p>Recon, Reporting, Disclosure</p><span class="tag">Recon</span><span class="tag">Reporting</span></div>
 </div></section>
 
-<section id="projects"><h2>PROJECTS // OPERATIONS</h2>
-<div class="proj"><div><h3>01 — Web Vulnerability Scanner</h3><p>Python tool for automated scanning of web vulnerabilities.</p></div><span class="st">COMPLETED</span></div>
-<div class="proj"><div><h3>02 — Phishing Detection Tool</h3><p>Detect phishing URLs with heuristics.</p></div><span class="st">COMPLETED</span></div>
-<div class="proj"><div><h3>03 — SOC Dashboard</h3><p>Real-time monitoring for threats & logs.</p></div><span class="st">IN PROGRESS</span></div>
+<section id="projects"><h2>[ + ] PROJECTS // OPERATIONS</h2>
+<div class="proj"><div><h3>01 — Web Vulnerability Scanner</h3><p>Python tool for automated scanning.</p></div><span class="st">COMPLETED</span></div>
+<div class="proj"><div><h3>02 — Phishing Detector</h3><p>Detect fake URLs.</p></div><span class="st">COMPLETED</span></div>
+<div class="proj"><div><h3>03 — Password Strength Checker</h3><p>Check how fast your password can be cracked.</p></div><span class="st">LIVE BELOW ↓</span></div>
+<div class="proj"><div><h3>04 — SOC Dashboard</h3><p>Real-time threat monitoring.</p></div><span class="st">IN PROGRESS</span></div>
+<div class="proj"><div><h3>05 — Steganography Tool</h3><p>Hide secret message inside image.</p></div><span class="st">COMPLETED</span></div>
+<div class="proj"><div><h3>06 — WiFi Auditor</h3><p>Audit your WiFi security.</p></div><span class="st">COMPLETED</span></div>
 </section>
 
-<section><h2>TERMINAL // LIVE</h2><div class="terminal2"><b>root@kabous:~$</b> nmap -sV target.com<br><span style="color:#888">Starting Nmap... 3 ports open</span><br><b>root@kabous:~$</b> whoami<br>eslam_kabous — ethical_hacker<br><b>root@kabous:~$</b> <span id="cursor">_</span></div></section>
+<section id="terminal"><h2>[ + ] TERMINAL // TRY IT - TYPE help</h2><div class="terminal" id="termOut">root@kabous:~$ Welcome, Hacker. Type <b>help</b> and press Enter<br></div><div style="display:flex;gap:8px;margin-top:8px"><input id="termIn" placeholder="Type: help, whoami, hack, skills, contact..." onkeydown="if(event.key==='Enter')runCmd()"><button class="btn" onclick="runCmd()">RUN</button></div></section>
 
-<section id="contact"><h2>CONTACT // SECURE CHANNEL</h2><form onsubmit="window.location.href='https://wa.me/201101145178?text='+encodeURIComponent(this.msg.value);return false"><input placeholder="Your Name / Hacker Name"><input placeholder="Your Email"><textarea name="msg" rows="3" placeholder="Your Message..."></textarea><button class="btn" style="width:100%">SEND VIA WHATSAPP →</button></form><p style="text-align:center;color:#00ff41;margin-top:14px;font-size:13px">eslam@kabous.sec | +20 114 362 6099</p></section>
-<footer>© 2026 ESLAM KABOUS — HACK THE PLANET. STAY SAFE.</footer>
+<section id="ctf"><h2>[ + ] CTF CHALLENGE // SECRET AREA</h2><p style="font-size:13px;color:#aaa">Hint: Decode this: <b style="color:var(--c)">S0FCQlVTMTIz</b> — It's Base64. Decode it to get the code.</p><div style="display:flex;gap:8px;margin-top:10px"><input id="ctfInput" placeholder="Enter secret code..."><button class="btn" onclick="checkCTF()">UNLOCK</button></div>
+<div id="secret"><h3>🎉 SECRET UNLOCKED 🎉</h3><p>You are a real hacker! Welcome to the secret club.<br>Message from Eslam: Keep hacking, never stop learning.</p><p style="margin-top:8px">WhatsApp me the word <b>SECRET</b> and I will reply.</p></div>
+<h3 style="margin-top:20px;font-size:13px">PASSWORD CHECKER</h3><input id="passIn" placeholder="Type a password..." oninput="checkPass()"><p id="passOut" style="color:var(--c);font-size:12px"></p>
+</section>
+
+<section><h2>[ + ] WRITEUPS & HALL OF FAME</h2><div class="grid"><div class="card"><h3>Writeup: How I Found IDOR</h3><p>Step by step: Recon → Testing → Report → Fixed. Full story on request.</p></div><div class="card"><h3>🏆 Hall of Fame</h3><p>Thanked by companies for responsible disclosure. Reports available.</p></div><div class="card"><h3>📜 Certifications</h3><p>TryHackMe Top 5% • HackTheBox • CTF 50+ Challenges</p></div><div class="card"><h3>📝 Blog: How I Started</h3><p>I started with curiosity. Now I break systems for a living. Full article soon.</p></div></div></section>
+
+<section id="contact"><h2>[ + ] CONTACT // SECURE CHANNEL</h2><form onsubmit="window.location.href='https://wa.me/201143626099?text='+encodeURIComponent(this.msg.value);return false"><input placeholder="Your Name / Hacker Name"><input placeholder="Email"><textarea name="msg" rows="3" placeholder="Your Message..."></textarea><button class="btn" style="width:100%">SEND VIA WHATSAPP →</button></form><p style="text-align:center;color:var(--c);margin-top:12px;font-size:12px">eslam@kabous.sec | +20 114 362 6099</p></section>
+<footer>© 2026 ESLAM KABOUS — HACK THE PLANET. STAY SAFE. | <!-- SECRET: You found it! You are a real hacker. Code is kabous123 --></footer>
 </div>
 <script>
-// Matrix rain
-var c=document.getElementById("matrix"),ctx=c.getContext("2d");c.height=window.innerHeight;c.width=window.innerWidth;var chars="01アイカブスESLAMKABOUS$#@";var cols=Math.floor(c.width/16);var drops=[];for(var i=0;i<cols;i++)drops[i]=1;function draw(){ctx.fillStyle="rgba(0,0,0,0.05)";ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle="#00ff41";ctx.font="14px monospace";for(var i=0;i<drops.length;i++){var t=chars[Math.floor(Math.random()*chars.length)];ctx.fillText(t,i*16,drops[i]*16);if(drops[i]*16>c.height&&Math.random()>0.975)drops[i]=0;drops[i]++;}}setInterval(draw,50);
-// Typing welcome
-function type(id,text,speed,cb){var i=0;var el=document.getElementById(id);var iv=setInterval(function(){el.textContent=text.slice(0,i);i++;if(i>text.length){clearInterval(iv);if(cb)cb();}},speed);}
-type("type1","> WELCOME, HACKER...",35,function(){type("type2","> ACCESS GRANTED...",35,function(){type("type3","> USER: ESLAM KABOUS — WELCOME BACK.",35);});});
-setInterval(function(){var cur=document.getElementById("cursor");cur.style.opacity=cur.style.opacity=="0"?"1":"0";},500);
+// BOOT
+let bw=0;let bi=setInterval(()=>{bw+=12;document.getElementById('bootFill').style.width=bw+'%';document.getElementById('bootText').textContent=bw<40?'Loading System...':bw<80?'Bypassing Firewall...':'ACCESS GRANTED - WELCOME, HACKER';if(bw>=100){clearInterval(bi);setTimeout(()=>document.getElementById('boot').style.display='none',500);}},180);
+// MATRIX
+var c=document.getElementById("matrix"),ctx=c.getContext("2d");c.height=innerHeight;c.width=innerWidth;var chars="01ESLAMKABOUS$#@";var cols=Math.floor(c.width/16);var drops=[];for(var i=0;i<cols;i++)drops[i]=1;setInterval(()=>{ctx.fillStyle="rgba(0,0,0,0.05)";ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle=getComputedStyle(document.body).getPropertyValue('--c')||"#00ff41";ctx.font="14px monospace";for(var i=0;i<drops.length;i++){ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,drops[i]*16);if(drops[i]*16>c.height&&Math.random()>0.975)drops[i]=0;drops[i]++;}},50);
+// WELCOME TYPING
+let lines=["> WELCOME, HACKER...","> ACCESS GRANTED...","> USER: ESLAM KABOUS — WELCOME BACK."],li=0,ci=0;let wel=document.getElementById('welcome');function typeWel(){if(li>=lines.length)return;if(ci<=lines[li].length){wel.innerHTML=lines.slice(0,li).join("<br>")+"<br>"+lines[li].slice(0,ci);ci++;setTimeout(typeWel,30);}else{li++;ci=0;setTimeout(typeWel,300);}}typeWel();
+// IP
+fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>document.getElementById('myip').textContent=d.ip).catch(()=>document.getElementById('myip').textContent='Hidden - VPN Detected');
+// MAP
+let map=document.getElementById('map');for(let i=0;i<14;i++){let d=document.createElement('div');d.className='dot';d.style.left=Math.random()*90+'%';d.style.top=Math.random()*85+'%';map.appendChild(d);}setInterval(()=>{document.getElementById('blocked').textContent=parseInt(document.getElementById('blocked').textContent)+Math.floor(Math.random()*3);},1000);
+// HACK ME
+function hackMe(){document.getElementById('hackBar').style.display='block';let p=0;let iv=setInterval(()=>{p+=10;document.getElementById('hackFill').style.width=p+'%';document.getElementById('hackText').textContent='Hacking... '+p+'%';if(p>=100){clearInterval(iv);document.getElementById('hackText').textContent='HACKED! Just kidding - You are safe with Eslam 😎';}},200);}
+// TERMINAL
+function runCmd(){let inp=document.getElementById('termIn');let cmd=inp.value.toLowerCase().trim();let out=document.getElementById('termOut');let res="";if(cmd==="help")res="Commands: whoami, hack, skills, contact, clear, kabous, secret";else if(cmd==="whoami")res="eslam_kabous — ethical_hacker";else if(cmd==="hack")res="Starting attack... Just kidding. Ethical hacking only!";else if(cmd==="skills")res="Web Pentesting, Bug Bounty, Python, Linux";else if(cmd==="contact")res="WhatsApp: +20 114 362 6099 | eslam@kabous.sec";else if(cmd==="kabous")res="The best hacker in Egypt 🔥";else if(cmd==="secret")res="Hint: Decode S0FCQlVTMTIz — Base64";else if(cmd==="clear"){out.innerHTML="root@kabous:~$ ";inp.value="";return;}else res="Command not found: "+cmd+" — Try help";out.innerHTML+="root@kabous:~$ "+cmd+"<br>"+res+"<br>";inp.value="";out.scrollTop=out.scrollHeight;}
+// CTF
+function checkCTF(){let v=document.getElementById('ctfInput').value.trim();if(v==="kabous123"){document.getElementById('secret').style.display='block';alert("ACCESS GRANTED! Welcome to Secret Club!");}else alert("Wrong code! Hint: Decode the Base64 above.");}
+// PASS CHECKER
+function checkPass(){let p=document.getElementById('passIn').value;let o=document.getElementById('passOut');if(!p){o.textContent="";return;}if(p.length<6)o.textContent="🔴 WEAK - Cracked in 1 second!";else if(p.length<10)o.textContent="🟡 MEDIUM - Cracked in 1 hour";else o.textContent="🟢 STRONG - Cracked in 100 years! Good!";}
 </script>
 </body>
-</html>
+  </html>
