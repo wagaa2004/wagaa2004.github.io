@@ -12,7 +12,6 @@ body.red{--c:#ff0033}body.red .green{color:#ff0033!important;border-color:#ff003
 canvas#matrix{position:fixed;inset:0;z-index:0;opacity:.22}
 .scan{position:fixed;left:0;right:0;height:2px;background:var(--c);box-shadow:0 0 20px var(--c);z-index:1;animation:scan 6s linear infinite;opacity:.5}
 @keyframes scan{0%{top:0}100%{top:100%}}
-/* BOOT */
 #boot{position:fixed;inset:0;background:#000;z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:'Share Tech Mono',monospace;color:var(--c);font-size:18px;text-align:center;padding:20px}
 #bootBar{width:260px;height:10px;border:1px solid var(--c);margin-top:16px}
 #bootFill{height:100%;width:0%;background:var(--c);box-shadow:0 0 15px var(--c)}
@@ -102,28 +101,19 @@ footer{padding:22px 0;text-align:center;color:#555;font-size:11px}
 
 <section><h2>[ + ] WRITEUPS & HALL OF FAME</h2><div class="grid"><div class="card"><h3>Writeup: How I Found IDOR</h3><p>Step by step: Recon → Testing → Report → Fixed. Full story on request.</p></div><div class="card"><h3>🏆 Hall of Fame</h3><p>Thanked by companies for responsible disclosure. Reports available.</p></div><div class="card"><h3>📜 Certifications</h3><p>TryHackMe Top 5% • HackTheBox • CTF 50+ Challenges</p></div><div class="card"><h3>📝 Blog: How I Started</h3><p>I started with curiosity. Now I break systems for a living. Full article soon.</p></div></div></section>
 
-<section id="contact"><h2>[ + ] CONTACT // SECURE CHANNEL</h2><form onsubmit="window.location.href='https://wa.me/201143626099?text='+encodeURIComponent(this.msg.value);return false"><input placeholder="Your Name / Hacker Name"><input placeholder="Email"><textarea name="msg" rows="3" placeholder="Your Message..."></textarea><button class="btn" style="width:100%">SEND VIA WHATSAPP →</button></form><p style="text-align:center;color:var(--c);margin-top:12px;font-size:12px">eslam@kabous.sec | +20 114 362 6099</p></section>
+<section id="contact"><h2>[ + ] CONTACT // SECURE CHANNEL</h2><form onsubmit="window.location.href='https://wa.me/201101145178?text='+encodeURIComponent(this.msg.value);return false"><input placeholder="Your Name / Hacker Name"><input placeholder="Email"><textarea name="msg" rows="3" placeholder="Your Message..."></textarea><button class="btn" style="width:100%">SEND VIA WHATSAPP →</button></form><p style="text-align:center;color:var(--c);margin-top:12px;font-size:12px">eslam@kabous.sec | +20 110 114 5178</p></section>
 <footer>© 2026 ESLAM KABOUS — HACK THE PLANET. STAY SAFE. | <!-- SECRET: You found it! You are a real hacker. Code is kabous123 --></footer>
 </div>
 <script>
-// BOOT
 let bw=0;let bi=setInterval(()=>{bw+=12;document.getElementById('bootFill').style.width=bw+'%';document.getElementById('bootText').textContent=bw<40?'Loading System...':bw<80?'Bypassing Firewall...':'ACCESS GRANTED - WELCOME, HACKER';if(bw>=100){clearInterval(bi);setTimeout(()=>document.getElementById('boot').style.display='none',500);}},180);
-// MATRIX
 var c=document.getElementById("matrix"),ctx=c.getContext("2d");c.height=innerHeight;c.width=innerWidth;var chars="01ESLAMKABOUS$#@";var cols=Math.floor(c.width/16);var drops=[];for(var i=0;i<cols;i++)drops[i]=1;setInterval(()=>{ctx.fillStyle="rgba(0,0,0,0.05)";ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle=getComputedStyle(document.body).getPropertyValue('--c')||"#00ff41";ctx.font="14px monospace";for(var i=0;i<drops.length;i++){ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,drops[i]*16);if(drops[i]*16>c.height&&Math.random()>0.975)drops[i]=0;drops[i]++;}},50);
-// WELCOME TYPING
 let lines=["> WELCOME, HACKER...","> ACCESS GRANTED...","> USER: ESLAM KABOUS — WELCOME BACK."],li=0,ci=0;let wel=document.getElementById('welcome');function typeWel(){if(li>=lines.length)return;if(ci<=lines[li].length){wel.innerHTML=lines.slice(0,li).join("<br>")+"<br>"+lines[li].slice(0,ci);ci++;setTimeout(typeWel,30);}else{li++;ci=0;setTimeout(typeWel,300);}}typeWel();
-// IP
 fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>document.getElementById('myip').textContent=d.ip).catch(()=>document.getElementById('myip').textContent='Hidden - VPN Detected');
-// MAP
 let map=document.getElementById('map');for(let i=0;i<14;i++){let d=document.createElement('div');d.className='dot';d.style.left=Math.random()*90+'%';d.style.top=Math.random()*85+'%';map.appendChild(d);}setInterval(()=>{document.getElementById('blocked').textContent=parseInt(document.getElementById('blocked').textContent)+Math.floor(Math.random()*3);},1000);
-// HACK ME
 function hackMe(){document.getElementById('hackBar').style.display='block';let p=0;let iv=setInterval(()=>{p+=10;document.getElementById('hackFill').style.width=p+'%';document.getElementById('hackText').textContent='Hacking... '+p+'%';if(p>=100){clearInterval(iv);document.getElementById('hackText').textContent='HACKED! Just kidding - You are safe with Eslam 😎';}},200);}
-// TERMINAL
-function runCmd(){let inp=document.getElementById('termIn');let cmd=inp.value.toLowerCase().trim();let out=document.getElementById('termOut');let res="";if(cmd==="help")res="Commands: whoami, hack, skills, contact, clear, kabous, secret";else if(cmd==="whoami")res="eslam_kabous — ethical_hacker";else if(cmd==="hack")res="Starting attack... Just kidding. Ethical hacking only!";else if(cmd==="skills")res="Web Pentesting, Bug Bounty, Python, Linux";else if(cmd==="contact")res="WhatsApp: +20 114 362 6099 | eslam@kabous.sec";else if(cmd==="kabous")res="The best hacker in Egypt 🔥";else if(cmd==="secret")res="Hint: Decode S0FCQlVTMTIz — Base64";else if(cmd==="clear"){out.innerHTML="root@kabous:~$ ";inp.value="";return;}else res="Command not found: "+cmd+" — Try help";out.innerHTML+="root@kabous:~$ "+cmd+"<br>"+res+"<br>";inp.value="";out.scrollTop=out.scrollHeight;}
-// CTF
+function runCmd(){let inp=document.getElementById('termIn');let cmd=inp.value.toLowerCase().trim();let out=document.getElementById('termOut');let res="";if(cmd==="help")res="Commands: whoami, hack, skills, contact, clear, kabous, secret";else if(cmd==="whoami")res="eslam_kabous — ethical_hacker";else if(cmd==="hack")res="Starting attack... Just kidding. Ethical hacking only!";else if(cmd==="skills")res="Web Pentesting, Bug Bounty, Python, Linux";else if(cmd==="contact")res="WhatsApp: +20 110 114 5178 | eslam@kabous.sec";else if(cmd==="kabous")res="The best hacker in Egypt 🔥";else if(cmd==="secret")res="Hint: Decode S0FCQlVTMTIz — Base64";else if(cmd==="clear"){out.innerHTML="root@kabous:~$ ";inp.value="";return;}else res="Command not found: "+cmd+" — Try help";out.innerHTML+="root@kabous:~$ "+cmd+"<br>"+res+"<br>";inp.value="";out.scrollTop=out.scrollHeight;}
 function checkCTF(){let v=document.getElementById('ctfInput').value.trim();if(v==="kabous123"){document.getElementById('secret').style.display='block';alert("ACCESS GRANTED! Welcome to Secret Club!");}else alert("Wrong code! Hint: Decode the Base64 above.");}
-// PASS CHECKER
 function checkPass(){let p=document.getElementById('passIn').value;let o=document.getElementById('passOut');if(!p){o.textContent="";return;}if(p.length<6)o.textContent="🔴 WEAK - Cracked in 1 second!";else if(p.length<10)o.textContent="🟡 MEDIUM - Cracked in 1 hour";else o.textContent="🟢 STRONG - Cracked in 100 years! Good!";}
 </script>
 </body>
-  </html>
+</html>
