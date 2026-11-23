@@ -2,174 +2,183 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KABOUS SIMULATOR 💀</title>
+<title>KABOUS DARK ACADEMY 🕷️</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#00ff41;font-family:monospace;padding:12px}
-.box{max-width:700px;margin:0 auto}
-h1{text-align:center;font-size:30px;color:#fff} h1 span{color:#00ff41}
-p.sub{text-align:center;color:#888;font-family:Arial;font-size:13px;margin:6px 0 16px}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.tab{flex:1;padding:10px;background:#111;border:1px solid #333;color:#fff;border-radius:10px;cursor:pointer;font-family:Arial;font-weight:700;text-align:center;font-size:13px}
-.tab.active{background:#00ff41;color:#000;border-color:#00ff41}
-.card{background:#0a0a0a;border:1px solid #00ff41;border-radius:12px;padding:14px;margin-bottom:12px;display:none}
+body{background:#000;color:#e0e0e0;font-family:Arial;padding:12px}
+.box{max-width:650px;margin:0 auto}
+.top{text-align:center;border:1px solid #a100f2;padding:16px;border-radius:14px;background:#0a0012}
+.top h1{font-size:28px;color:#fff} .top h1 span{color:#a100f2}
+.top p{color:#aaa;font-size:12px;margin-top:6px}
+.badge{display:inline-block;background:#a100f2;color:#fff;padding:4px 10px;border-radius:20px;font-size:11px;margin-top:8px}
+.bar{background:#222;height:10px;border-radius:10px;margin:12px 0;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,#a100f2,#00ff41);width:0%;transition:width .8s}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.tab{flex:1;padding:10px;background:#111;border:1px solid #333;color:#fff;border-radius:10px;cursor:pointer;font-weight:700;text-align:center;font-size:13px}
+.tab.active{background:#a100f2;border-color:#a100f2}
+.card{background:#0d0d0d;border:1px solid #333;border-radius:14px;padding:14px;margin-bottom:12px;display:none}
 .card.show{display:block}
-.term{background:#000;border:1px solid #333;border-radius:10px;padding:12px;min-height:220px;font-size:13px;line-height:1.8;overflow:auto;direction:ltr;text-align:left;white-space:pre-wrap}
-input,textarea,select{width:100%;background:#000;border:1px solid #333;color:#00ff41;padding:11px;border-radius:8px;font-family:monospace;font-size:13px;margin-top:8px}
-.btn{width:100%;padding:12px;background:#00ff41;color:#000;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin-top:8px;font-family:Arial;font-size:14px}
+.card h3{color:#a100f2;margin-bottom:8px}
+.card p{color:#ccc;font-size:13px;line-height:1.7}
+.btn{width:100%;padding:12px;background:#a100f2;color:#fff;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin-top:8px;font-size:14px}
 .btn2{background:#111;color:#00ff41;border:1px solid #00ff41}
-.lesson{background:#111;border:1px solid #222;padding:12px;border-radius:10px;margin-bottom:8px;font-family:Arial}
-.lesson b{color:#00ff41} .lesson p{color:#ccc;font-size:13px;margin-top:4px}
-code{background:#000;color:#00ff41;padding:2px 6px;border-radius:4px;direction:ltr;display:inline-block}
-.small{color:#777;font-family:Arial;font-size:11px;text-align:center;margin-top:12px}
+.btnG{background:#00ff41;color:#000}
+.term{background:#000;border:1px solid #a100f2;border-radius:10px;padding:12px;min-height:120px;font-family:monospace;font-size:12px;color:#00ff41;direction:ltr;text-align:left;white-space:pre-wrap;line-height:1.7}
+input,textarea{width:100%;background:#000;border:1px solid #333;color:#fff;padding:11px;border-radius:8px;margin-top:8px}
+.level{background:#111;border:1px solid #333;padding:12px;border-radius:10px;margin-bottom:8px;opacity:.4}
+.level.unlocked{opacity:1;border-color:#a100f2}
+.level.done{border-color:#00ff41;opacity:1}
+.level b{color:#fff} .level small{color:#aaa}
+.shop{background:#111;border:1px solid #333;padding:12px;border-radius:10px;margin-bottom:8px}
+.shop b{color:#ffcc00} .shop p{font-size:12px;color:#aaa}
+.lock{color:#ff5555;font-size:12px}
 </style>
 </head>
 <body>
 <div class="box">
-<h1>KABOUS <span>SIMULATOR</span> 💀</h1>
-<p class="sub">محاكي هاكر - لينكس + بايثون + اختراق | إسلام كابوس - الشيخ فضل - بني مزار - المنيا</p>
+<div class="top">
+<div style="font-size:36px">🧅</div>
+<h1>KABOUS <span>DARK ACADEMY</span></h1>
+<p>أكاديمية سرية جوة الدارك ويب - للتعلم فقط</p>
+<div class="badge">🕷️ TOR CONNECTED - IP HIDDEN</div>
+<div style="margin-top:10px;font-size:13px">مستواك: <b id="myLevel" style="color:#a100f2">NOOB</b> | نقاطك: <b id="myPts" style="color:#00ff41">0</b> | 🪙 BTC: <b id="myBtc" style="color:#ffcc00">0.00</b></div>
+<div class="bar"><div class="fill" id="prog"></div></div>
+<p style="font-size:11px;color:#888">خلص المستويات عشان تفتح السوق السري كله</p>
+</div>
 
 <div class="tabs">
-<div class="tab active" onclick="showTab(0,this)">💻 تيرمينال لينكس</div>
-<div class="tab" onclick="showTab(1,this)">🐍 بايثون</div>
-<div class="tab" onclick="showTab(2,this)">⚡ اختراق</div>
-<div class="tab" onclick="showTab(3,this)">📚 تعلم</div>
+<div class="tab active" onclick="showTab(0,this)">🎓 الأكاديمية</div>
+<div class="tab" onclick="showTab(1,this)">🕷️ السوق السري</div>
+<div class="tab" onclick="showTab(2,this)">💻 تيرمينال</div>
+<div class="tab" onclick="showTab(3,this)">🏆 شهادتي</div>
 </div>
 
-<!-- 1 LINUX -->
+<!-- ACADEMY -->
 <div class="card show">
-<h3 style="font-family:Arial">💻 تيرمينال لينكس - اكتب أوامر حقيقية</h3>
-<div class="term" id="linuxOut">root@kabous:~$ Welcome to Linux Simulator
-root@kabous:~$ جرب: ls , pwd , whoami , cat flag.txt , python3 , clear , help
-</div>
-<input id="linuxIn" placeholder="اكتب أمر... ls, pwd, whoami, help" onkeydown="if(event.key==='Enter')runLinux()">
-<button class="btn" onclick="runLinux()">تشغيل ▶️</button>
-<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
-<button class="btn btn2" style="flex:1" onclick="quickLinux('ls')">ls</button>
-<button class="btn btn2" style="flex:1" onclick="quickLinux('pwd')">pwd</button>
-<button class="btn btn2" style="flex:1" onclick="quickLinux('whoami')">whoami</button>
-<button class="btn btn2" style="flex:1" onclick="quickLinux('cat flag.txt')">cat flag</button>
-</div>
+<h3>🎓 مستويات الأكاديمية</h3>
+
+<div class="level unlocked" id="lv0">
+<b>المستوى 1: NOOB - أساسيات لينكس</b><br><small>اكتب: <code style="color:#00ff41">ls</code> في التيرمينال عشان تعدي</small>
+<p style="margin-top:6px">السؤال: أمر عرض الملفات في لينكس؟</p>
+<div style="display:flex;gap:6px"><button class="btn btn2" style="flex:1" onclick="answer(0,'ls')">ls</button><button class="btn btn2" style="flex:1" onclick="answer(0,'cd')">cd</button><button class="btn btn2" style="flex:1" onclick="answer(0,'pwd')">pwd</button></div>
 </div>
 
-<!-- 2 PYTHON -->
+<div class="level" id="lv1">
+<b>المستوى 2: HACKER - بايثون</b><br><small>مقفول - خلص المستوى 1</small>
+<p style="margin-top:6px">السؤال: ازاي تطبع Hello في بايثون؟</p>
+<div style="display:flex;gap:6px"><button class="btn btn2" style="flex:1" onclick="answer(1,'print')">print("Hello")</button><button class="btn btn2" style="flex:1" onclick="answer(1,'echo')">echo Hello</button></div>
+</div>
+
+<div class="level" id="lv2">
+<b>المستوى 3: PRO - اختراق أخلاقي</b><br><small>مقفول - خلص المستوى 2</small>
+<p style="margin-top:6px">السؤال: أداة فحص الشبكة المشهورة؟</p>
+<div style="display:flex;gap:6px"><button class="btn btn2" style="flex:1" onclick="answer(2,'nmap')">nmap</button><button class="btn btn2" style="flex:1" onclick="answer(2,'photoshop')">photoshop</button></div>
+</div>
+
+<div class="level" id="lv3">
+<b>المستوى 4: BOSS - الفلاج الأخير 👑</b><br><small>مقفول - خلص المستوى 3</small>
+<p style="margin-top:6px">السؤال: فين مكان إسلام؟ الشيخ فضل تبع مركز ايه؟</p>
+<div style="display:flex;gap:6px"><button class="btn btn2" style="flex:1" onclick="answer(3,'بني مزار')">بني مزار</button><button class="btn btn2" style="flex:1" onclick="answer(3,'القاهرة')">القاهرة</button></div>
+</div>
+
+</div>
+
+<!-- DARK MARKET -->
 <div class="card">
-<h3 style="font-family:Arial">🐍 محاكي بايثون - اكتب كود وشغله</h3>
-<textarea id="pyCode" rows="6">print("Hello, I am Kabous")
-name = "Eslam"
-print("My name is " + name)
-for i in range(5):
-    print("Hacking... " + str(i))</textarea>
-<button class="btn" onclick="runPython()">▶️ شغّل الكود</button>
-<div class="term" id="pyOut">>>> جاهز... دوس شغّل الكود</div>
-<div style="display:flex;gap:6px;margin-top:8px">
-<button class="btn btn2" style="flex:1" onclick="setPy(0)">مثال 1: Hello</button>
-<button class="btn btn2" style="flex:1" onclick="setPy(1)">مثال 2: باسورد</button>
-<button class="btn btn2" style="flex:1" onclick="setPy(2)">مثال 3: اختراق</button>
-</div>
+<h3>🕷️ السوق السري - DARK MARKET</h3>
+<p style="color:#ff5555;font-size:12px">⚠️ محاكاة للتعلم فقط - مش سوق حقيقي</p>
+<div class="shop"><b>🛠️ أداة فحص الثغرات - 0.01 BTC</b><p>أداة KABOUS لفحص المواقع</p><button class="btn btn2" onclick="buyShop('أداة فحص',0.01,0)">اشتري - محتاج مستوى 1</button></div>
+<div class="shop"><b>🐍 كورس بايثون سري - 0.02 BTC</b><p>كورس بايثون للهاكر من الصفر</p><button class="btn btn2" onclick="buyShop('كورس بايثون',0.02,1)">اشتري - محتاج مستوى 2</button></div>
+<div class="shop"><b>👑 باقة BOSS الكاملة - 0.05 BTC</b><p>كل الكورسات + أدوات + متابعة</p><button class="btn btn2" onclick="buyShop('باقة BOSS',0.05,2)">اشتري - محتاج مستوى 3</button></div>
+<div class="shop" style="border-color:#ffcc00"><b>💎 كارت VIP - الشيخ فضل - مجاني للمستوى 4</b><p>خصم 50% على كل حاجة</p><button class="btn btnG" onclick="buyShop('كارت VIP',0,3)">خد كارت VIP مجاناً</button></div>
+<p id="shopMsg" style="color:#00ff41;margin-top:8px"></p>
 </div>
 
-<!-- 3 HACK -->
+<!-- TERMINAL -->
 <div class="card">
-<h3 style="font-family:Arial">⚡ محاكي اختراق - زي الأفلام</h3>
-<div class="term" id="hackOut">KABOUS HACK SIMULATOR - للتعلم فقط
-جرب: nmap , sqlmap , hydra , hack
-</div>
-<input id="hackIn" placeholder="اكتب: nmap target.com" onkeydown="if(event.key==='Enter')runHack()">
-<button class="btn" onclick="runHack()">⚡ ابدأ الاختراق</button>
-<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
-<button class="btn btn2" style="flex:1" onclick="quickHack('nmap target.com')">nmap</button>
-<button class="btn btn2" style="flex:1" onclick="quickHack('sqlmap')">sqlmap</button>
-<button class="btn btn2" style="flex:1" onclick="quickHack('hack')">hack</button>
-</div>
-<p style="font-family:Arial;color:#888;font-size:12px;margin-top:8px">⚠️ محاكاة للتعلم فقط - مش اختراق حقيقي</p>
+<h3>💻 تيرمينال الدارك ويب</h3>
+<div class="term" id="termOut">root@darkweb:~$ TOR connected...
+root@darkweb:~$ جرب: ls , whoami , cat flag.txt , tor , help</div>
+<input id="termIn" placeholder="اكتب أمر..." onkeydown="if(event.key==='Enter')runTerm()">
+<button class="btn" onclick="runTerm()">تشغيل ▶️</button>
 </div>
 
-<!-- 4 LEARN -->
+<!-- CERT -->
 <div class="card">
-<h3 style="font-family:Arial">📚 تعلم لينكس + بايثون + اختراق</h3>
-<div class="lesson"><b>1. لينكس - أهم 5 أوامر</b><p><code>ls</code> يعرض الملفات<br><code>cd</code> يتنقل بين المجلدات<br><code>pwd</code> انت فين دلوقتي<br><code>cat file</code> يعرض محتوى ملف<br><code>sudo</code> صلاحيات المدير</p><button class="btn btn2" onclick="showTab(0,document.querySelectorAll('.tab')[0]);quickLinux('ls')">جرّبها في التيرمينال ←</button></div>
-<div class="lesson"><b>2. بايثون - أول كود</b><p><code>print("Hello")</code> يطبع كلام<br><code>name = "Eslam"</code> متغير<br><code>for i in range(5):</code> تكرار</p><button class="btn btn2" onclick="showTab(1,document.querySelectorAll('.tab')[1])">جرّب بايثون ←</button></div>
-<div class="lesson"><b>3. اختراق أخلاقي - الطريق</b><p>1- لينكس → 2- شبكات → 3- بايثون → 4- OWASP → 5- TryHackMe</p><button class="btn btn2" onclick="showTab(2,document.querySelectorAll('.tab')[2])">جرّب محاكي الاختراق ←</button></div>
-<div class="lesson"><b>4. عايز تتعلم معايا؟</b><p>كورس هاكر كامل - 200 ج - واتساب</p><button class="btn" onclick="window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز كورس هاكر - لينكس + بايثون'))">اطلب الكورس واتساب ←</button></div>
+<h3>🏆 شهادتك</h3>
+<p>خلص الـ 4 مستويات عشان تاخد شهادة BOSS</p>
+<input id="certName" placeholder="اسمك...">
+<button class="btn btnG" onclick="getCert()">طلع شهادتي 🎓</button>
+<div id="certOut" style="display:none;margin-top:12px;background:#000;border:1px solid #ffcc00;padding:14px;border-radius:10px;text-align:center;color:#ffcc00"></div>
+<button class="btn btn2" onclick="window.open('https://wa.me/201101145178?text='+encodeURIComponent('خلصت KABOUS DARK ACADEMY - عايز شهادتي'))">ابعت لإسلام على واتساب ←</button>
 </div>
 
-<p class="small">© 2026 إسلام كابوس - الشيخ فضل - بني مزار - المنيا - مصر 🇪🇬<br>محاكاة للتعلم والترفيه فقط</p>
+<p style="text-align:center;color:#555;font-size:11px;margin-top:10px">© 2026 إسلام كابوس - الشيخ فضل - بني مزار - المنيا 🇪🇬<br>محاكاة تعليمية فقط - مش دارك ويب حقيقي</p>
 </div>
 
 <script>
+let pts = parseInt(localStorage.getItem('dark_pts')||'0');
+let level = parseInt(localStorage.getItem('dark_lv')||'0');
+let btc = 0.00;
+let answers = ['ls','print','nmap','بني مزار'];
+let levelNames = ['NOOB','HACKER','PRO','BOSS','👑 DARK BOSS'];
+function render(){
+  document.getElementById('myPts').textContent = pts;
+  document.getElementById('myLevel').textContent = levelNames[level] || 'NOOB';
+  document.getElementById('myBtc').textContent = btc.toFixed(2);
+  document.getElementById('prog').style.width = (level*25)+'%';
+  for(let i=0;i<4;i++){
+    let el=document.getElementById('lv'+i);
+    if(i<level){ el.classList.add('done'); el.classList.add('unlocked'); }
+    else if(i===level){ el.classList.add('unlocked'); }
+  }
+}
+render();
 function showTab(i,elm){
-  document.querySelectorAll('.card').forEach(function(c){c.classList.remove('show')});
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('show'));
   document.querySelectorAll('.card')[i].classList.add('show');
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
-  if(elm) elm.classList.add('active'); else document.querySelectorAll('.tab')[i].classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  elm.classList.add('active');
 }
-// LINUX
-let fs = { '/': ['home','etc','flag.txt'], '/home': ['eslam','kabous.txt'] };
-let cur = '/';
-function runLinux(){
-  let inp = document.getElementById('linuxIn'); let cmd = inp.value.trim(); if(!cmd) return;
-  let out = document.getElementById('linuxOut');
-  out.textContent += '\nroot@kabous:'+cur+'$ '+cmd+'\n';
-  let res = '';
-  let low = cmd.toLowerCase();
-  if(low==='help') res = 'أوامر: ls, pwd, whoami, cd, cat flag.txt, python3, clear, nmap, hack';
-  else if(low==='ls') res = cur==='/' ? 'home  etc  flag.txt  secret/' : 'eslam  kabous.txt  tools/';
-  else if(low==='pwd') res = cur;
-  else if(low==='whoami') res = 'eslam_kabous - Ethical Hacker from Sheikh Fadl';
-  else if(low==='cat flag.txt' || low==='cat flag') res = '🎉 FLAG{KABOUS_LINUX_MASTER} - انت لقيت الفلاج!';
-  else if(low==='cat kabous.txt') res = 'Eslam Kabous - Beni Mazar - Minya - Egypt';
-  else if(low==='cd home') { cur='/home'; res='دخلت /home'; }
-  else if(low==='cd ..' || low==='cd /') { cur='/'; res='رجعت /'; }
-  else if(low==='python3' || low==='python') res = 'Python 3.11 - اكتب print("Hello") في تبويب بايثون';
-  else if(low==='clear') { out.textContent='root@kabous:~$ '; inp.value=''; return; }
-  else if(low.indexOf('nmap')>-1) res = 'Starting Nmap...\nPort 80 OPEN\nPort 443 OPEN\nPort 22 CLOSED';
-  else if(low==='hack') res = '⚡ Starting hack... Just kidding! Ethical only :)';
-  else if(low==='sudo') res = '😂 انت مش مدير هنا، انت في محاكي!';
-  else res = 'الأمر مش موجود: '+cmd+' - جرب help';
-  out.textContent += res + '\n';
-  out.scrollTop = out.scrollHeight; inp.value='';
+function answer(lv,ans){
+  if(lv!==level){ alert('خلص المستوى '+ (level+1) +' الأول!'); return; }
+  if(ans===answers[lv]){
+    pts+=50; btc+=0.01; level++;
+    localStorage.setItem('dark_pts',pts); localStorage.setItem('dark_lv',level);
+    render();
+    alert('✅ صح! عديت المستوى! +50 نقطة +0.01 BTC');
+    if(level>=4){ alert('🎉 بقيت DARK BOSS! روح خد شهادتك'); showTab(3,document.querySelectorAll('.tab')[3]); }
+  } else {
+    alert('❌ غلط! جرب تاني');
+  }
 }
-function quickLinux(c){ document.getElementById('linuxIn').value=c; runLinux(); }
-
-// PYTHON
-let pyEx = [
-'print("Hello, I am Kabous")\nname = "Eslam"\nprint("My name is " + name)\nfor i in range(5):\n    print("Hacking... " + str(i))',
-'password = "123456"\nif password == "123456":\n    print("باسورد ضعيف! هيتكسر في ثانية")\nelse:\n    print("باسورد قوي")',
-'print("Scanning target...")\nfor port in [80, 443, 22, 21]:\n    print("Port " + str(port) + " - OPEN")\nprint("Hack Complete!")'
-];
-function setPy(i){ document.getElementById('pyCode').value = pyEx[i]; runPython(); }
-function runPython(){
-  let code = document.getElementById('pyCode').value;
-  let out = document.getElementById('pyOut');
-  out.textContent = '>>> Running...\n';
-  setTimeout(function(){
-    let lines = code.split('\n'); let res = '';
-    lines.forEach(function(l){
-      l=l.trim();
-      if(l.indexOf('print("')>-1){ let m=l.match(/print\("([^"]*)"\)/); if(m) res+=m[1]+'\n'; }
-      else if(l.indexOf('print(')>-1 && l.indexOf('+')>-1){ res+='Eslam - output...\n'; }
-      else if(l.indexOf('for i in range')>-1){ let n=l.match(/\d+/); let c=n?parseInt(n[0]):3; for(let i=0;i<c;i++) res+='Hacking... '+i+'\n'; }
-      else if(l.indexOf('for port')>-1){ res+='Port 80 - OPEN\nPort 443 - OPEN\nPort 22 - CLOSED\n'; }
-    });
-    if(!res) res='✅ الكود اشتغل! - جرب مثال تاني';
-    out.textContent += res + '\n>>> Done ✅';
-  },500);
+function buyShop(name,price,need){
+  if(level<=need && need!==3){ alert('🔒 مقفول! لازم توصل مستوى '+(need+1)+' الأول'); return; }
+  if(need===3 && level<4){ alert('🔒 لازم تبقى BOSS الأول'); return; }
+  document.getElementById('shopMsg').textContent = '✅ اشتريت: '+name+' - ابعت لإسلام واتساب عشان تستلمه';
+  window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز أشتري من الدارك ماركت: '+name));
 }
-
-// HACK
-function runHack(){
-  let inp = document.getElementById('hackIn'); let cmd = inp.value.trim() || 'hack'; let out = document.getElementById('hackOut');
-  out.textContent += '\n> '+cmd+'\n';
-  let steps = [];
-  if(cmd.toLowerCase().indexOf('nmap')>-1) steps = ['Scanning target.com...','Port 80 OPEN - HTTP','Port 443 OPEN - HTTPS','Port 22 CLOSED','Found 2 open ports ✅'];
-  else if(cmd.toLowerCase().indexOf('sqlmap')>-1) steps = ['Testing SQL Injection...','Found vulnerable parameter: id','Dumping database...','Got 100 users (SIMULATION)'];
-  else if(cmd.toLowerCase().indexOf('hydra')>-1) steps = ['Brute forcing password...','Trying 123456... Failed','Trying kabous123... SUCCESS! (SIM)'];
-  else steps = ['Connecting...','Bypassing Firewall...','Injecting Payload...','ACCESS GRANTED - JUST KIDDING! Simulation'];
-  let i=0; let iv=setInterval(function(){ if(i>=steps.length){ clearInterval(iv); out.textContent+='\n✅ Done - محاكاة للتعلم فقط'; out.scrollTop=out.scrollHeight; return; } out.textContent+=steps[i]+'\n'; out.scrollTop=out.scrollHeight; i++; },600);
-  inp.value='';
+function runTerm(){
+  let inp=document.getElementById('termIn'); let cmd=inp.value.trim().toLowerCase(); if(!cmd) return;
+  let out=document.getElementById('termOut'); out.textContent+='\nroot@darkweb:~$ '+cmd+'\n';
+  let r='';
+  if(cmd==='ls') r='flag.txt  dark_market/  academy/  secret.txt';
+  else if(cmd==='whoami') r='kabous - DARK BOSS - Sheikh Fadl';
+  else if(cmd==='cat flag.txt') r='FLAG{KABOUS_DARK_ACADEMY} 🎉';
+  else if(cmd==='tor') r='TOR: Connected via 3 nodes - IP Hidden 🧅';
+  else if(cmd==='help') r='ls, whoami, cat flag.txt, tor, hack';
+  else if(cmd==='hack') r='Starting hack... Simulation only :)';
+  else if(cmd==='clear'){ out.textContent='root@darkweb:~$ '; inp.value=''; return; }
+  else r='الأمر مش موجود - جرب help';
+  out.textContent+=r+'\n'; out.scrollTop=out.scrollHeight; inp.value='';
 }
-function quickHack(c){ document.getElementById('hackIn').value=c; runHack(); }
+function getCert(){
+  if(level<4){ alert('لسه! خلص الـ 4 مستويات الأول - انت في مستوى '+(level+1)); return; }
+  let n=document.getElementById('certName').value.trim()||'Hacker';
+  let code='DARK-'+Math.random().toString(36).substring(2,8).toUpperCase();
+  let o=document.getElementById('certOut'); o.style.display='block';
+  o.innerHTML='🎓 <b>شهادة DARK BOSS</b><br>الاسم: '+n+'<br>من: KABOUS DARK ACADEMY<br>كود: '+code+'<br>المكان: الشيخ فضل - بني مزار - المنيا';
+}
 </script>
 </body>
 </html>
