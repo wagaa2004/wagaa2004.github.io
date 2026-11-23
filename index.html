@@ -2,63 +2,174 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>إسلام كابوس</title>
+<title>KABOUS SIMULATOR 💀</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0a;color:#fff;font-family:Arial,sans-serif;padding:20px}
-.box{max-width:520px;margin:0 auto}
-h1{font-size:32px;text-align:center}
-h1 span{color:#00ff41}
-p{color:#aaa;text-align:center;margin:8px 0 20px;font-size:14px}
-.card{background:#151515;border:1px solid #222;padding:16px;border-radius:12px;margin-bottom:12px}
-.card h3{color:#00ff41;margin-bottom:8px;font-size:16px}
-.card p{color:#ccc;text-align:right;font-size:14px}
-.btn{display:block;width:100%;padding:12px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px}
-.green{background:#00ff41;color:#000}
-.dark{background:#222;color:#fff;border:1px solid #333}
-input,textarea{width:100%;background:#000;border:1px solid #333;color:#fff;padding:11px;border-radius:8px;margin-bottom:8px;font-size:14px}
-small{color:#777;display:block;text-align:center;margin-top:16px}
+body{background:#000;color:#00ff41;font-family:monospace;padding:12px}
+.box{max-width:700px;margin:0 auto}
+h1{text-align:center;font-size:30px;color:#fff} h1 span{color:#00ff41}
+p.sub{text-align:center;color:#888;font-family:Arial;font-size:13px;margin:6px 0 16px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tab{flex:1;padding:10px;background:#111;border:1px solid #333;color:#fff;border-radius:10px;cursor:pointer;font-family:Arial;font-weight:700;text-align:center;font-size:13px}
+.tab.active{background:#00ff41;color:#000;border-color:#00ff41}
+.card{background:#0a0a0a;border:1px solid #00ff41;border-radius:12px;padding:14px;margin-bottom:12px;display:none}
+.card.show{display:block}
+.term{background:#000;border:1px solid #333;border-radius:10px;padding:12px;min-height:220px;font-size:13px;line-height:1.8;overflow:auto;direction:ltr;text-align:left;white-space:pre-wrap}
+input,textarea,select{width:100%;background:#000;border:1px solid #333;color:#00ff41;padding:11px;border-radius:8px;font-family:monospace;font-size:13px;margin-top:8px}
+.btn{width:100%;padding:12px;background:#00ff41;color:#000;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin-top:8px;font-family:Arial;font-size:14px}
+.btn2{background:#111;color:#00ff41;border:1px solid #00ff41}
+.lesson{background:#111;border:1px solid #222;padding:12px;border-radius:10px;margin-bottom:8px;font-family:Arial}
+.lesson b{color:#00ff41} .lesson p{color:#ccc;font-size:13px;margin-top:4px}
+code{background:#000;color:#00ff41;padding:2px 6px;border-radius:4px;direction:ltr;display:inline-block}
+.small{color:#777;font-family:Arial;font-size:11px;text-align:center;margin-top:12px}
 </style>
 </head>
 <body>
 <div class="box">
-<h1>إسلام <span>كابوس</span></h1>
-<p>هاكر أخلاقي | بحمي المواقع من الاختراق</p>
+<h1>KABOUS <span>SIMULATOR</span> 💀</h1>
+<p class="sub">محاكي هاكر - لينكس + بايثون + اختراق | إسلام كابوس - الشيخ فضل - بني مزار - المنيا</p>
 
-<div class="card">
-<h3>من أنا</h3>
-<p>أنا إسلام من الشيخ فضل - بني مزار - المنيا.<br>بفحص المواقع وبطلع الثغرات قبل ما حد يستغلها.</p>
+<div class="tabs">
+<div class="tab active" onclick="showTab(0,this)">💻 تيرمينال لينكس</div>
+<div class="tab" onclick="showTab(1,this)">🐍 بايثون</div>
+<div class="tab" onclick="showTab(2,this)">⚡ اختراق</div>
+<div class="tab" onclick="showTab(3,this)">📚 تعلم</div>
 </div>
 
-<div class="card">
-<h3>خدماتي</h3>
-<p>🛡️ فحص موقع - 500 ج<br>🔒 حماية كاملة - 1000 ج</p>
-<button class="btn green" onclick="order('فحص موقع - 500ج')">اطلب فحص على واتساب</button>
-<button class="btn dark" onclick="order('حماية كاملة - 1000ج')">اطلب حماية كاملة</button>
+<!-- 1 LINUX -->
+<div class="card show">
+<h3 style="font-family:Arial">💻 تيرمينال لينكس - اكتب أوامر حقيقية</h3>
+<div class="term" id="linuxOut">root@kabous:~$ Welcome to Linux Simulator
+root@kabous:~$ جرب: ls , pwd , whoami , cat flag.txt , python3 , clear , help
+</div>
+<input id="linuxIn" placeholder="اكتب أمر... ls, pwd, whoami, help" onkeydown="if(event.key==='Enter')runLinux()">
+<button class="btn" onclick="runLinux()">تشغيل ▶️</button>
+<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+<button class="btn btn2" style="flex:1" onclick="quickLinux('ls')">ls</button>
+<button class="btn btn2" style="flex:1" onclick="quickLinux('pwd')">pwd</button>
+<button class="btn btn2" style="flex:1" onclick="quickLinux('whoami')">whoami</button>
+<button class="btn btn2" style="flex:1" onclick="quickLinux('cat flag.txt')">cat flag</button>
+</div>
 </div>
 
+<!-- 2 PYTHON -->
 <div class="card">
-<h3>📍 عنواني</h3>
-<p>الشيخ فضل - بني مزار - المنيا - مصر</p>
-<button class="btn dark" onclick="copyAddr()">📋 نسخ العنوان</button>
-<button class="btn dark" onclick="openMap()">🗺️ افتح في جوجل مابس</button>
+<h3 style="font-family:Arial">🐍 محاكي بايثون - اكتب كود وشغله</h3>
+<textarea id="pyCode" rows="6">print("Hello, I am Kabous")
+name = "Eslam"
+print("My name is " + name)
+for i in range(5):
+    print("Hacking... " + str(i))</textarea>
+<button class="btn" onclick="runPython()">▶️ شغّل الكود</button>
+<div class="term" id="pyOut">>>> جاهز... دوس شغّل الكود</div>
+<div style="display:flex;gap:6px;margin-top:8px">
+<button class="btn btn2" style="flex:1" onclick="setPy(0)">مثال 1: Hello</button>
+<button class="btn btn2" style="flex:1" onclick="setPy(1)">مثال 2: باسورد</button>
+<button class="btn btn2" style="flex:1" onclick="setPy(2)">مثال 3: اختراق</button>
+</div>
 </div>
 
+<!-- 3 HACK -->
 <div class="card">
-<h3>كلمني</h3>
-<input id="n" placeholder="اسمك">
-<textarea id="m" rows="3" placeholder="رسالتك"></textarea>
-<button class="btn green" onclick="send()">إرسال واتساب</button>
+<h3 style="font-family:Arial">⚡ محاكي اختراق - زي الأفلام</h3>
+<div class="term" id="hackOut">KABOUS HACK SIMULATOR - للتعلم فقط
+جرب: nmap , sqlmap , hydra , hack
+</div>
+<input id="hackIn" placeholder="اكتب: nmap target.com" onkeydown="if(event.key==='Enter')runHack()">
+<button class="btn" onclick="runHack()">⚡ ابدأ الاختراق</button>
+<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+<button class="btn btn2" style="flex:1" onclick="quickHack('nmap target.com')">nmap</button>
+<button class="btn btn2" style="flex:1" onclick="quickHack('sqlmap')">sqlmap</button>
+<button class="btn btn2" style="flex:1" onclick="quickHack('hack')">hack</button>
+</div>
+<p style="font-family:Arial;color:#888;font-size:12px;margin-top:8px">⚠️ محاكاة للتعلم فقط - مش اختراق حقيقي</p>
 </div>
 
-<small>© 2026 إسلام كابوس - الشيخ فضل - بني مزار - المنيا</small>
+<!-- 4 LEARN -->
+<div class="card">
+<h3 style="font-family:Arial">📚 تعلم لينكس + بايثون + اختراق</h3>
+<div class="lesson"><b>1. لينكس - أهم 5 أوامر</b><p><code>ls</code> يعرض الملفات<br><code>cd</code> يتنقل بين المجلدات<br><code>pwd</code> انت فين دلوقتي<br><code>cat file</code> يعرض محتوى ملف<br><code>sudo</code> صلاحيات المدير</p><button class="btn btn2" onclick="showTab(0,document.querySelectorAll('.tab')[0]);quickLinux('ls')">جرّبها في التيرمينال ←</button></div>
+<div class="lesson"><b>2. بايثون - أول كود</b><p><code>print("Hello")</code> يطبع كلام<br><code>name = "Eslam"</code> متغير<br><code>for i in range(5):</code> تكرار</p><button class="btn btn2" onclick="showTab(1,document.querySelectorAll('.tab')[1])">جرّب بايثون ←</button></div>
+<div class="lesson"><b>3. اختراق أخلاقي - الطريق</b><p>1- لينكس → 2- شبكات → 3- بايثون → 4- OWASP → 5- TryHackMe</p><button class="btn btn2" onclick="showTab(2,document.querySelectorAll('.tab')[2])">جرّب محاكي الاختراق ←</button></div>
+<div class="lesson"><b>4. عايز تتعلم معايا؟</b><p>كورس هاكر كامل - 200 ج - واتساب</p><button class="btn" onclick="window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز كورس هاكر - لينكس + بايثون'))">اطلب الكورس واتساب ←</button></div>
+</div>
+
+<p class="small">© 2026 إسلام كابوس - الشيخ فضل - بني مزار - المنيا - مصر 🇪🇬<br>محاكاة للتعلم والترفيه فقط</p>
 </div>
 
 <script>
-function order(t){ window.open('https://wa.me/201101145178?text='+encodeURIComponent('أهلاً إسلام، عايز: '+t)); }
-function copyAddr(){ let a='الشيخ فضل - بني مزار - المنيا - مصر'; navigator.clipboard.writeText(a); alert('تم نسخ العنوان'); }
-function openMap(){ window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent('الشيخ فضل بني مزار المنيا')); }
-function send(){ let n=document.getElementById('n').value; let m=document.getElementById('m').value; if(!n||!m){ alert('اكتب اسمك ورسالتك'); return; } window.open('https://wa.me/201101145178?text='+encodeURIComponent('الاسم: '+n+'\nالرسالة: '+m)); }
+function showTab(i,elm){
+  document.querySelectorAll('.card').forEach(function(c){c.classList.remove('show')});
+  document.querySelectorAll('.card')[i].classList.add('show');
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  if(elm) elm.classList.add('active'); else document.querySelectorAll('.tab')[i].classList.add('active');
+}
+// LINUX
+let fs = { '/': ['home','etc','flag.txt'], '/home': ['eslam','kabous.txt'] };
+let cur = '/';
+function runLinux(){
+  let inp = document.getElementById('linuxIn'); let cmd = inp.value.trim(); if(!cmd) return;
+  let out = document.getElementById('linuxOut');
+  out.textContent += '\nroot@kabous:'+cur+'$ '+cmd+'\n';
+  let res = '';
+  let low = cmd.toLowerCase();
+  if(low==='help') res = 'أوامر: ls, pwd, whoami, cd, cat flag.txt, python3, clear, nmap, hack';
+  else if(low==='ls') res = cur==='/' ? 'home  etc  flag.txt  secret/' : 'eslam  kabous.txt  tools/';
+  else if(low==='pwd') res = cur;
+  else if(low==='whoami') res = 'eslam_kabous - Ethical Hacker from Sheikh Fadl';
+  else if(low==='cat flag.txt' || low==='cat flag') res = '🎉 FLAG{KABOUS_LINUX_MASTER} - انت لقيت الفلاج!';
+  else if(low==='cat kabous.txt') res = 'Eslam Kabous - Beni Mazar - Minya - Egypt';
+  else if(low==='cd home') { cur='/home'; res='دخلت /home'; }
+  else if(low==='cd ..' || low==='cd /') { cur='/'; res='رجعت /'; }
+  else if(low==='python3' || low==='python') res = 'Python 3.11 - اكتب print("Hello") في تبويب بايثون';
+  else if(low==='clear') { out.textContent='root@kabous:~$ '; inp.value=''; return; }
+  else if(low.indexOf('nmap')>-1) res = 'Starting Nmap...\nPort 80 OPEN\nPort 443 OPEN\nPort 22 CLOSED';
+  else if(low==='hack') res = '⚡ Starting hack... Just kidding! Ethical only :)';
+  else if(low==='sudo') res = '😂 انت مش مدير هنا، انت في محاكي!';
+  else res = 'الأمر مش موجود: '+cmd+' - جرب help';
+  out.textContent += res + '\n';
+  out.scrollTop = out.scrollHeight; inp.value='';
+}
+function quickLinux(c){ document.getElementById('linuxIn').value=c; runLinux(); }
+
+// PYTHON
+let pyEx = [
+'print("Hello, I am Kabous")\nname = "Eslam"\nprint("My name is " + name)\nfor i in range(5):\n    print("Hacking... " + str(i))',
+'password = "123456"\nif password == "123456":\n    print("باسورد ضعيف! هيتكسر في ثانية")\nelse:\n    print("باسورد قوي")',
+'print("Scanning target...")\nfor port in [80, 443, 22, 21]:\n    print("Port " + str(port) + " - OPEN")\nprint("Hack Complete!")'
+];
+function setPy(i){ document.getElementById('pyCode').value = pyEx[i]; runPython(); }
+function runPython(){
+  let code = document.getElementById('pyCode').value;
+  let out = document.getElementById('pyOut');
+  out.textContent = '>>> Running...\n';
+  setTimeout(function(){
+    let lines = code.split('\n'); let res = '';
+    lines.forEach(function(l){
+      l=l.trim();
+      if(l.indexOf('print("')>-1){ let m=l.match(/print\("([^"]*)"\)/); if(m) res+=m[1]+'\n'; }
+      else if(l.indexOf('print(')>-1 && l.indexOf('+')>-1){ res+='Eslam - output...\n'; }
+      else if(l.indexOf('for i in range')>-1){ let n=l.match(/\d+/); let c=n?parseInt(n[0]):3; for(let i=0;i<c;i++) res+='Hacking... '+i+'\n'; }
+      else if(l.indexOf('for port')>-1){ res+='Port 80 - OPEN\nPort 443 - OPEN\nPort 22 - CLOSED\n'; }
+    });
+    if(!res) res='✅ الكود اشتغل! - جرب مثال تاني';
+    out.textContent += res + '\n>>> Done ✅';
+  },500);
+}
+
+// HACK
+function runHack(){
+  let inp = document.getElementById('hackIn'); let cmd = inp.value.trim() || 'hack'; let out = document.getElementById('hackOut');
+  out.textContent += '\n> '+cmd+'\n';
+  let steps = [];
+  if(cmd.toLowerCase().indexOf('nmap')>-1) steps = ['Scanning target.com...','Port 80 OPEN - HTTP','Port 443 OPEN - HTTPS','Port 22 CLOSED','Found 2 open ports ✅'];
+  else if(cmd.toLowerCase().indexOf('sqlmap')>-1) steps = ['Testing SQL Injection...','Found vulnerable parameter: id','Dumping database...','Got 100 users (SIMULATION)'];
+  else if(cmd.toLowerCase().indexOf('hydra')>-1) steps = ['Brute forcing password...','Trying 123456... Failed','Trying kabous123... SUCCESS! (SIM)'];
+  else steps = ['Connecting...','Bypassing Firewall...','Injecting Payload...','ACCESS GRANTED - JUST KIDDING! Simulation'];
+  let i=0; let iv=setInterval(function(){ if(i>=steps.length){ clearInterval(iv); out.textContent+='\n✅ Done - محاكاة للتعلم فقط'; out.scrollTop=out.scrollHeight; return; } out.textContent+=steps[i]+'\n'; out.scrollTop=out.scrollHeight; i++; },600);
+  inp.value='';
+}
+function quickHack(c){ document.getElementById('hackIn').value=c; runHack(); }
 </script>
 </body>
 </html>
