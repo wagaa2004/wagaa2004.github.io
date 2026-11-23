@@ -179,3 +179,151 @@ function voiceAssistant(){ let v=el('voiceRes'); if(v) v.textContent='🎤 بت�
 function speak(){ try{ let u=new SpeechSynthesisUtterance('Welcome back, Boss. V50 Final is online. System secure.'); speechSynthesis.speak(u); }catch(e){} }
 function startSim(){ let s=el('hackSim'); s.style.display='block'; let t=el('simText'); let l2=['[V50] Connecting to target...','[V50] Bypassing Firewall...','[V50] Injecting Payload...','[V50] Cracking Password...','[V50] ACCESS GRANTED - JUST KIDDING! Simulation by Eslam - FINAL BOSS']; let i=0; t.innerHTML=''; let iv=setInterval(function(){ if(i>=l2.length){ clearInterval(iv); return; } t.innerHTML+='<br>> '+l2[i]; i++; },700); }
 function askAI(){ let inp=el('aiIn'); let q=inp.value.toLowerCase().trim(); if(!q) return; let box=el('aiBox'); let ans=''; if(q.indexOf('بكام')>-1||q.indexOf('سعر')>-1||q.indexOf('فحص')>-1) ans='V50: فحص 500ج، حماية 1000ج، باقة BOSS 2000ج، كورس 200ج.'; else if(q.indexOf('اتعلم')>-1||q.indexOf('تعلم')>-1) ans='V50 Roadmap: شبكات -> Linux -> Python -> OWASP -> TryHackMe -> Bug Bounty.'; else if(q.indexOf('ثغرة')>-1||q.indexOf('اخطر')>-1) ans='أخطر الثغرات V50: SQLi و XSS و IDOR و SSRF.'; else if(q.indexOf('عنوان')>
+<!-- ===== V51 TRACKER SIMULATOR - ضيفها قبل </body> ===== -->
+<div class="card" style="border:2px solid #ff0033">
+<h3 style="color:#ff0033">🛰️ KABOUS TRACKER - محاكي تتبع الشيخ فضل</h3>
+<p style="color:#999;font-size:12px">⚠️ للترفيه والمحاكاة فقط - مش تتبع حقيقي - زي أفلام الهاكر</p>
+
+<div style="background:#000;border:1px solid #ff0033;border-radius:12px;padding:12px;margin-top:10px">
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<input id="trackName" placeholder="اكتب اسم وهمي... مثال: أحمد" style="margin:0">
+<input id="trackNum" placeholder="رقم وهمي... مثال: 011..." style="margin:0;direction:ltr;text-align:left">
+</div>
+<div style="display:flex;gap:6px;margin-top:8px">
+<button class="btn btn-fill" style="flex:1;background:#ff0033;border-color:#ff0033;color:#fff" onclick="startTrack()">🛰️ ابدأ التتبع</button>
+<button class="btn" onclick="stopTrack()">⏹️ إيقاف</button>
+<button class="btn" onclick="clearTracks()">🗑️ مسح الكل</button>
+</div>
+<p id="trackStatus" style="color:#00ff41;font-size:13px;margin-top:8px">جاهز للمسح...</p>
+
+<!-- خريطة الشيخ فضل -->
+<div style="position:relative;background:#001100;border:1px solid #00ff41;border-radius:12px;height:320px;overflow:hidden;margin-top:10px" id="trackMap">
+<div style="position:absolute;inset:0;opacity:.2;background:repeating-linear-gradient(0deg,transparent 0 20px,#00ff41 20px 21px),repeating-linear-gradient(90deg,transparent 0 20px,#00ff41 20px 21px)"></div>
+<div style="position:absolute;top:8px;right:8px;background:#000;padding:4px 8px;border-radius:20px;font-size:11px;color:#00ff41;border:1px solid #00ff41">📍 الشيخ فضل - بني مزار - LIVE</div>
+<div style="position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);text-align:center;opacity:.6"><div style="font-size:28px">🕌</div><div style="font-size:11px;color:#ffcc00;font-weight:900">الشيخ فضل</div></div>
+<div style="position:absolute;bottom:10px;left:10px;font-size:10px;color:#888">🟢 = بيتتحرك | 🔴 = واقف | 🟡 = ضعيف</div>
+<div id="trackDots"></div>
+<!-- رادار -->
+<div id="radar" style="position:absolute;width:120px;height:120px;border:1px solid #00ff41;border-radius:50%;bottom:10px;right:10px;background:rgba(0,255,65,.05);overflow:hidden;display:none">
+<div style="position:absolute;inset:0;border-radius:50%;border:1px dashed #00ff41;opacity:.5"></div>
+<div id="radarLine" style="position:absolute;left:50%;top:50%;width:50%;height:2px;background:#00ff41;transform-origin:left center;transition:transform .1s"></div>
+<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:6px;height:6px;background:#ff0033;border-radius:50%"></div>
+</div>
+</div>
+
+<div id="trackList" style="margin-top:10px"></div>
+
+<div style="background:#0a0a0a;padding:10px;border-radius:10px;margin-top:10px">
+<h4>👥 أشخاص جاهزين - دوس عليهم:</h4>
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+<button class="btn" onclick="quickTrack('أحمد - الشيخ فضل')">أحمد</button>
+<button class="btn" onclick="quickTrack('محمد - بني مزار')">محمد</button>
+<button class="btn" onclick="quickTrack('عمر - المنيا')">عمر</button>
+<button class="btn" onclick="quickTrack('سارة - الشيخ فضل')">سارة</button>
+<button class="btn" onclick="quickTrack('TARGET-001')">🎯 TARGET-001</button>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+let tracked = [];
+let trackInt = null;
+let radarDeg = 0;
+let radarInt = null;
+
+function startTrack(){
+  let name = document.getElementById('trackName').value.trim() || 'شخص مجهول';
+  let num = document.getElementById('trackNum').value.trim() || '01xxxxxxxxx';
+  // خلي الاسم وهمي لو حقيقي - تحذير
+  if(!document.getElementById('trackName').value.trim()){
+    toast('اكتب اسم وهمي للعبة - مثال: أحمد');
+    return;
+  }
+  let id = Date.now();
+  let person = {
+    id: id,
+    name: name,
+    num: num,
+    x: 20 + Math.random()*60,
+    y: 20 + Math.random()*60,
+    speed: (Math.random()*3+1).toFixed(1),
+    status: 'بيتحرك'
+  };
+  tracked.push(person);
+  document.getElementById('trackStatus').innerHTML = '🛰️ جاري تتبع <b>'+name+'</b>... تم العثور عليه في الشيخ فضل!';
+  document.getElementById('radar').style.display = 'block';
+  if(!radarInt){
+    radarInt = setInterval(function(){
+      radarDeg += 10;
+      let l = document.getElementById('radarLine');
+      if(l) l.style.transform = 'rotate('+radarDeg+'deg)';
+    }, 50);
+  }
+  if(!trackInt){
+    trackInt = setInterval(updateTracks, 800);
+  }
+  renderTracks();
+  toast('تم العثور على '+name+' في الشيخ فضل 📍');
+  addPoints(10, 'تتبع محاكي');
+}
+
+function quickTrack(name){
+  document.getElementById('trackName').value = name;
+  document.getElementById('trackNum').value = '011' + Math.floor(Math.random()*100000000);
+  startTrack();
+}
+
+function updateTracks(){
+  tracked.forEach(function(p){
+    p.x += (Math.random()-0.5)*8;
+    p.y += (Math.random()-0.5)*8;
+    if(p.x<5) p.x=5; if(p.x>90) p.x=90;
+    if(p.y<10) p.y=10; if(p.y>85) p.y=85;
+    p.status = Math.random() > 0.3 ? 'بيتحرك 🟢' : 'واقف 🔴';
+  });
+  renderTracks();
+}
+
+function renderTracks(){
+  let dots = document.getElementById('trackDots');
+  let list = document.getElementById('trackList');
+  if(!dots) return;
+  dots.innerHTML = '';
+  list.innerHTML = '';
+  tracked.forEach(function(p){
+    let d = document.createElement('div');
+    d.style.cssText = 'position:absolute;left:'+p.x+'%;top:'+p.y+'%;transform:translate(-50%,-50%);text-align:center;transition:all .8s';
+    d.innerHTML = '<div style="width:14px;height:14px;background:#ff0033;border-radius:50%;margin:0 auto;box-shadow:0 0 12px #ff0033;border:2px solid #fff;animation:pulse 1s infinite"></div><div style="background:#000;color:#fff;font-size:10px;padding:2px 6px;border-radius:10px;border:1px solid #ff0033;white-space:nowrap;margin-top:2px">'+p.name+'</div>';
+    dots.appendChild(d);
+
+    let item = document.createElement('div');
+    item.style.cssText = 'background:#0a0a0a;padding:10px;border-radius:10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;border:1px solid #1e2e1e';
+    item.innerHTML = '<div><b style="color:#00ff41">'+p.name+'</b><br><span style="font-size:11px;color:#888;direction:ltr">'+p.num+'</span><br><span style="font-size:11px;color:#ffcc00">📍 الشيخ فضل - سرعة: '+p.speed+' كم/س - '+p.status+'</span></div><button onclick="removeTrack('+p.id+')" style="background:#ff0033;color:#fff;border:none;padding:6px 10px;border-radius:8px;cursor:pointer">حذف</button>';
+    list.appendChild(item);
+  });
+}
+
+function removeTrack(id){
+  tracked = tracked.filter(function(p){ return p.id !== id; });
+  renderTracks();
+  if(tracked.length===0) stopTrack();
+}
+
+function stopTrack(){
+  clearInterval(trackInt); trackInt=null;
+  clearInterval(radarInt); radarInt=null;
+  let r = document.getElementById('radar');
+  if(r) r.style.display='none';
+  document.getElementById('trackStatus').textContent = '⏹️ تم إيقاف التتبع';
+  toast('تم إيقاف التتبع');
+}
+
+function clearTracks(){
+  tracked = [];
+  renderTracks();
+  stopTrack();
+  document.getElementById('trackStatus').textContent = 'تم مسح الكل - جاهز للمسح...';
+}
+</script>
+<style>@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}</style>
