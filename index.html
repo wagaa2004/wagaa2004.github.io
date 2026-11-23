@@ -2,127 +2,98 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KABOUS MEGA WORLD 💀🌍</title>
+<title>إسلام كابوس 💀</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:Arial;padding:12px}
-.box{max-width:700px;margin:0 auto}
-.hero{text-align:center;border:2px solid #00ff41;padding:16px;border-radius:16px;background:#050505}
-.hero h1{font-size:28px} .hero h1 span{color:#00ff41}
-.hero p{color:#aaa;font-size:12px;margin-top:6px}
-.stats{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
-.stat{flex:1;background:#111;border:1px solid #333;padding:10px;border-radius:10px;text-align:center;font-size:12px}
-.stat b{color:#00ff41;font-size:16px;display:block}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.app{background:#111;border:1px solid #333;padding:14px;border-radius:14px;cursor:pointer;text-align:center}
-.app:active{transform:scale(.96);border-color:#00ff41}
-.app div{font-size:28px} .app b{font-size:13px} .app p{color:#888;font-size:11px;margin-top:4px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:99;display:none;padding:12px;overflow:auto}
-.mbox{max-width:600px;margin:0 auto;background:#0d0d0d;border:2px solid #00ff41;padding:16px;border-radius:14px}
-.btn{width:100%;padding:12px;background:#00ff41;color:#000;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin-top:8px}
+.box{max-width:600px;margin:0 auto}
+.hero{text-align:center;border:2px solid #00ff41;padding:20px;border-radius:16px;background:#050505}
+.hero h1{font-size:32px} .hero h1 span{color:#00ff41}
+.hero p{color:#aaa;font-size:13px;margin-top:8px;line-height:1.7}
+.btn{width:100%;padding:14px;background:#00ff41;color:#000;border:none;border-radius:12px;font-weight:900;cursor:pointer;margin-top:10px;font-size:15px}
 .btn2{background:#111;color:#00ff41;border:1px solid #00ff41}
+.btnW{background:#25D366;color:#fff}
 .btnR{background:#ff0033;color:#fff}
-input,textarea,select{width:100%;background:#000;border:1px solid #333;color:#fff;padding:11px;border-radius:8px;margin-top:8px}
-.term{background:#000;border:1px solid #00ff41;padding:12px;border-radius:10px;font-family:monospace;font-size:12px;color:#00ff41;min-height:120px;direction:ltr;text-align:left;white-space:pre-wrap;line-height:1.7}
-.close{float:left;background:#ff0033;color:#fff;border:none;padding:6px 12px;border-radius:8px;cursor:pointer}
+.card{background:#111;border:1px solid #333;padding:16px;border-radius:14px;margin-top:12px}
+.card h3{color:#00ff41} .card p{color:#ccc;font-size:13px;line-height:1.7;margin-top:6px}
+.term{background:#000;border:1px solid #00ff41;padding:12px;border-radius:10px;font-family:monospace;font-size:12px;color:#00ff41;min-height:100px;direction:ltr;text-align:left;white-space:pre-wrap;line-height:1.7;margin-top:8px}
+input{width:100%;background:#000;border:1px solid #333;color:#fff;padding:12px;border-radius:10px;margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.item{background:#000;border:1px solid #333;padding:12px;border-radius:10px;text-align:center}
+.item b{font-size:13px} .item p{font-size:11px;color:#888}
+.price{color:#00ff41;font-weight:900;font-size:16px}
+.hide{display:none}
 </style>
 </head>
 <body>
 <div class="box">
-<div class="hero">
-<div style="font-size:40px">💀🌍</div>
-<h1>KABOUS <span>MEGA WORLD</span></h1>
-<p>12 عالم هاكر في موقع واحد - إسلام كابوس - الشيخ فضل - بني مزار - المنيا</p>
-</div>
-<div class="stats">
-<div class="stat">نقاطك<b id="pts">0</b></div>
-<div class="stat">مستواك<b id="lvl">NOOB</b></div>
-<div class="stat">BTC<b id="btc">0.00</b></div>
-<div class="stat">رتبتك العسكرية<b id="rank">جندي</b></div>
+
+<!-- المرحلة 1: الخضة -->
+<div class="hero" id="prank">
+<div style="font-size:50px">😱</div>
+<h1>تم اختراق <span>جهازك!</span></h1>
+<p>IP بتاعك: <b id="ip" style="color:#fff">196.XXX.XX.XX</b><br>مكانك: <b style="color:#fff">بني مزار - المنيا</b><br>موبايلك: <b style="color:#fff" id="dev">Android</b></p>
+<div style="background:#c00;padding:10px;border-radius:10px;margin-top:12px;font-weight:700">⏳ هيتقفل جهازك بعد: <span id="cd">5</span></div>
+<button class="btn btnR" onclick="reveal()">😨 الحقني يا كابوس!</button>
 </div>
 
+<div class="hero hide" id="reveal">
+<div style="font-size:50px">😂</div>
+<h1>اهدى يا صاحبي، <span>بهزر معاك!</span></h1>
+<p>ده كان محاكي. جهازك سليم 100%<br>بس تخيل لو كان حقيقي؟ عشان كده عملت الموقع ده.</p>
+<button class="btn" onclick="sharePrank()">😂 ابعت الخضة لصاحبك ← دي اللي هتشهرك</button>
+<button class="btn btn2" onclick="document.getElementById('learn').scrollIntoView({behavior:'smooth'})">لا، عايز اتعلم بجد ↓</button>
+</div>
+
+<!-- المرحلة 2: التعلم -->
+<div class="card" id="learn">
+<h3>🎓 اتعلم هاكر بجد - 3 دقايق</h3>
+<p>جرب بنفسك، مش هتقرا بس:</p>
+<div class="term" id="termOut">root@kabous:~$ جرب تكتب: ls , whoami , cat flag.txt</div>
+<input id="termIn" placeholder="اكتب: ls" onkeydown="if(event.key==='Enter')runTerm()">
+<button class="btn btn2" onclick="runTerm()">تشغيل ▶️</button>
+<p style="margin-top:10px">🐍 بايثون:</p>
+<div class="term" id="pyOut">>>> دوس شغّل</div>
+<button class="btn btn2" onclick="runPy()">شغّل كود بايثون: print("انا هاكر")</button>
+<p style="margin-top:10px;color:#00ff41">✅ لو عرفت تعملهم، انت كده عديت أول مستوى!</p>
+</div>
+
+<!-- المرحلة 3: الفلوس -->
+<div class="card">
+<h3>💰 عايز تكمل معايا؟</h3>
+<p>اللي فوق ده كان لعب. اللي تحت ده شغل بجد:</p>
 <div class="grid">
-<div class="app" onclick="openApp(0)"><div>😈</div><b>فيروس الفدية</b><p>جهازك اتشفر! ادفع؟</p></div>
-<div class="app" onclick="openApp(1)"><div>💻</div><b>KABOUS OS</b><p>نظام تشغيل كامل</p></div>
-<div class="app" onclick="openApp(2)"><div>🇪🇬</div><b>حرب مصر</b><p>دافع عن مصر</p></div>
-<div class="app" onclick="openApp(3)"><div>🕷️</div><b>الدارك ويب</b><p>سوق سري + أكاديمية</p></div>
-<div class="app" onclick="openApp(4)"><div>🔓</div><b>غرفة الهروب</b><p>احل الألغاز واهرب</p></div>
-<div class="app" onclick="openApp(5)"><div>📱</div><b>هكر واتساب</b><p>محاكاة هزار</p></div>
-<div class="app" onclick="openApp(6)"><div>🤖</div><b>KABOUS AI</b><p>بنت هاكر بتتكلم مصري</p></div>
-<div class="app" onclick="openApp(7)"><div>🔍</div><b>كاشف المزيف</b><p>صورة حقيقية ولا AI؟</p></div>
-<div class="app" onclick="openApp(8)"><div>📻</div><b>راديو + TV هاكر</b><p>بث 24 ساعة</p></div>
-<div class="app" onclick="openApp(9)"><div>🎓</div><b>الأكاديمية</b><p>من Noob لـ BOSS</p></div>
-<div class="app" onclick="openApp(10)"><div>🐍</div><b>بايثون + لينكس</b><p>تيرمينال حقيقي</p></div>
-<div class="app" onclick="openApp(11)"><div>⚡</div><b>اختراق سريع</b><p>nmap + sqlmap</p></div>
+<div class="item"><b>🎓 كورس هاكر كامل</b><p>لينكس + بايثون + اختراق أخلاقي</p><div class="price">200 ج</div><button class="btn" style="padding:8px" onclick="buy('كورس هاكر كامل - 200ج')">اطلب</button></div>
+<div class="item"><b>🔍 فحص موقع / حساب</b><p>هل موقعك مخترق؟</p><div class="price">500 ج</div><button class="btn" style="padding:8px" onclick="buy('فحص موقع - 500ج')">اطلب</button></div>
+<div class="item"><b>🛡️ حماية واتساب</b><p>أمّن حسابك من الاختراق</p><div class="price">100 ج</div><button class="btn" style="padding:8px" onclick="buy('حماية واتساب - 100ج')">اطلب</button></div>
+<div class="item"><b>👑 متابعة خاصة VIP</b><p>شهر كامل معايا</p><div class="price">1000 ج</div><button class="btn" style="padding:8px" onclick="buy('متابعة VIP - 1000ج')">اطلب</button></div>
 </div>
-<p style="text-align:center;color:#555;font-size:11px;margin-top:14px">© 2026 إسلام كابوس - الشيخ فضل - بني مزار - المنيا 🇪🇬<br>كل ده محاكاة للتعلم والترفيه فقط</p>
+<button class="btn btnW" onclick="window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز استفسر عن خدمات KABOUS'))">💬 كلمني واتساب على طول</button>
+<p style="text-align:center;color:#888;font-size:11px;margin-top:10px">إسلام كابوس - الشيخ فضل - بني مزار - المنيا 🇪🇬<br>الدفع: فودافون كاش / انستا باي - واتساب: 01101145178</p>
 </div>
 
-<div class="modal" id="modal"><div class="mbox"><button class="close" onclick="closeApp()">✕ اقفل</button><div id="modalBody"></div></div></div>
-
+</div>
 <script>
-let pts = parseInt(localStorage.getItem('mega_pts')||'0');
-let lv = parseInt(localStorage.getItem('mega_lv')||'0');
-function addPts(n){ pts+=n; localStorage.setItem('mega_pts',pts); render(); }
-function render(){
-  document.getElementById('pts').textContent=pts;
-  document.getElementById('lvl').textContent = pts<50?'NOOB':pts<150?'HACKER':pts<300?'PRO':'👑 BOSS';
-  document.getElementById('btc').textContent=(pts*0.0001).toFixed(2);
-  document.getElementById('rank').textContent = pts<50?'جندي':pts<150?'ملازم':pts<300?'عميد':'لواء';
+document.getElementById('dev').textContent = /iPhone/.test(navigator.userAgent) ? 'iPhone' : /Android/.test(navigator.userAgent) ? 'Android' : 'Computer';
+document.getElementById('ip').textContent = '196.'+Math.floor(Math.random()*200)+'.'+Math.floor(Math.random()*200)+'.'+Math.floor(Math.random()*200);
+let c=5; let iv=setInterval(function(){ c--; let el=document.getElementById('cd'); if(el) el.textContent=c; if(c<=0){ clearInterval(iv); reveal(); } },1000);
+function reveal(){ document.getElementById('prank').classList.add('hide'); document.getElementById('reveal').classList.remove('hide'); }
+function sharePrank(){
+  let txt='😱 الحق! موقع إسلام كابوس بيخترق أي حد يدخله! جرب بنفسك: https://wagaa2004.github.io/';
+  if(navigator.share){ navigator.share({text:txt}); } else { navigator.clipboard.writeText(txt); alert('✅ اتنسخ! ابعته لصحابك على واتساب'); }
+  window.open('https://wa.me/?text='+encodeURIComponent(txt));
 }
-render();
-function openApp(i){
-  let b=document.getElementById('modalBody'); let m=document.getElementById('modal'); m.style.display='block';
-  let h='';
-  if(i===0) h=`<h2>😈 فيروس الفدية - جهازك اتشفر!</h2><p style="color:#ff5555">⚠️ محاكاة فقط - مش فيروس حقيقي</p><div style="background:#c00;padding:14px;border-radius:10px;text-align:center;margin-top:10px"><b>🔒 ملفاتك اتشفرت!</b><br>ادفع 1000 جنيه عشان نفكها<br>العد التنازلي: <span id="cd">59</span> ثانية</div><button class="btn btnR" onclick="alert('😂 ده كان هزار! دي محاكاة، جهازك سليم');addPts(20)">😱 ادفع الفدية</button><button class="btn btn2" onclick="alert('✅ صح! عمرك ما تدفع فدية - اعمل نسخة احتياطية وبلّغ');addPts(30)">🛡️ مش هدفع - هحمي نفسي</button><p style="color:#aaa;font-size:12px;margin-top:8px">الدرس: اعمل باك اب، ومتفتحش لينكات غريبة</p>`;
-  if(i===1) h=`<h2>💻 KABOUS OS</h2><p>نظام تشغيل جوة المتصفح</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><div style="background:#111;padding:12px;border-radius:10px;text-align:center" onclick="alert('📁 ملفاتك: flag.txt - kabous.txt - tools/')">📁<br>ملفاتي</div><div style="background:#111;padding:12px;border-radius:10px;text-align:center" onclick="openApp(10)">💻<br>تيرمينال</div><div style="background:#111;padding:12px;border-radius:10px;text-align:center" onclick="openApp(8)">📻<br>راديو</div><div style="background:#111;padding:12px;border-radius:10px;text-align:center" onclick="openApp(3)">🕷️<br>دارك ويب</div></div><button class="btn" onclick="addPts(10);alert('✅ فتحت KABOUS OS +10')">فتح النظام +10</button>`;
-  if(i===2) h=`<h2>🇪🇬 حرب مصر - دافع عن بلدك</h2><p>هجمات جاية! دوس عشان تصدها</p><div style="text-align:center;font-size:40px;margin:12px" id="enemy">🇷🇺</div><p style="text-align:center">هجمات تم صدها: <b id="def" style="color:#00ff41">0</b></p><button class="btn btnR" onclick="defend()">🛡️ صد الهجوم!</button><button class="btn btn2" onclick="window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز انضم لجيش KABOUS'))">انضم لجيش KABOUS</button>`;
-  if(i===3) h=`<h2>🕷️ الدارك ويب + أكاديمية</h2><p>🧅 TOR Connected - IP Hidden</p><div style="background:#111;padding:12px;border-radius:10px;margin-top:10px"><b style="color:#ffcc00">🛠️ أداة فحص - 0.01 BTC</b><br><button class="btn btn2" onclick="addPts(20);alert('✅ اشتريت أداة فحص - ابعت واتساب')">اشتري</button></div><div style="background:#111;padding:12px;border-radius:10px;margin-top:8px"><b style="color:#ffcc00">🎓 كورس بايثون سري - 0.02 BTC</b><br><button class="btn btn2" onclick="openApp(9)">ادخل الأكاديمية</button></div>`;
-  if(i===4) h=`<h2>🔓 غرفة الهروب</h2><p>انت محبوس! حل اللغز عشان تخرج<br>السؤال: أمر عرض الملفات في لينكس؟</p><div style="display:flex;gap:6px"><button class="btn btn2" style="flex:1" onclick="addPts(50);alert('🎉 هربت! +50 نقطة - انت BOSS')">ls</button><button class="btn btn2" style="flex:1" onclick="alert('❌ غلط - لسه محبوس')">cd</button></div><p style="color:#888;font-size:12px;margin-top:8px">الوقت: 04:59 - الحل بسرعة!</p>`;
-  if(i===5) h=`<h2>📱 محاكي هكر واتساب - هزار</h2><p style="color:#ff5555">⚠️ هزار فقط - مش اختراق حقيقي</p><input id="waNum" placeholder="رقم صاحبك الوهمي..."><button class="btn" onclick="waHack()">ابدأ الهزار 😂</button><div class="term" id="waOut">جاهز...</div>`;
-  if(i===6) h=`<h2>🤖 KABOUS AI - بنت هاكر</h2><div class="term" id="aiBox">🤖 نورة: أهلاً يا قمر! أنا نورة الهاكر، اسألني أي حاجة 😘</div><input id="aiIn" placeholder="اسأل نورة..."><button class="btn" onclick="askNora()">اسأل نورة</button>`;
-  if(i===7) h=`<h2>🔍 كاشف المزيف</h2><p>ارفع صورة أو اختار مثال</p><button class="btn btn2" onclick="alert('🔍 جاري الفحص...\\nالنتيجة: الصورة دي AI 87% - متصدقهاش!');addPts(15)">🔍 افحص صورة مثال</button><input type="file" onchange="alert('🔍 جاري الفحص... النتيجة هتطلع: 92% حقيقية ✅')">`;
-  if(i===8) h=`<h2>📻 راديو + TV هاكر 24 ساعة</h2><div style="background:#000;border:1px solid #00ff41;padding:14px;border-radius:10px;text-align:center">📺 <b>الآن على الهوا:</b><br><span id="radioTxt">بودكاست: إزاي تبقى هاكر في 2026</span><br><span style="color:#ff0033">● LIVE - 342 بيسمعوا</span></div><button class="btn" onclick="nextRadio()">⏭️ الحلقة اللي بعدها</button><button class="btn btn2" onclick="window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز أطلب أغنية على راديو KABOUS'))">اطلب أغنية على الهوا 🎵</button>`;
-  if(i===9) h=`<h2>🎓 الأكاديمية - من NOOB لـ BOSS</h2><p>المستوى 1: أمر عرض الملفات؟</p><button class="btn btn2" onclick="addPts(50);alert('✅ صح! بقيت HACKER +50')">ls</button><button class="btn btn2" onclick="alert('❌ غلط')">cd</button><p style="margin-top:10px">المستوى 2: print في بايثون بيعمل ايه؟</p><button class="btn btn2" onclick="addPts(50);alert('✅ صح! بقيت PRO +50')">بيطبع كلام</button>`;
-  if(i===10) h=`<h2>🐍 بايثون + لينكس</h2><div class="term" id="termOut">root@kabous:~$ جرب: ls , whoami , cat flag.txt</div><input id="termIn" placeholder="اكتب: ls" onkeydown="if(event.key==='Enter')runTerm()"><button class="btn" onclick="runTerm()">تشغيل ▶️</button><textarea id="pyCode" rows="3">print("Hello Kabous")</textarea><button class="btn btn2" onclick="alert('>>> Hello Kabous\\n✅ الكود اشتغل!');addPts(10)">شغّل بايثون</button>`;
-  if(i===11) h=`<h2>⚡ اختراق سريع</h2><div class="term" id="hackOut">جرب: nmap , sqlmap</div><input id="hackIn" placeholder="اكتب: nmap target.com"><button class="btn" onclick="runHack()">⚡ ابدأ</button>`;
-  b.innerHTML=h;
-  if(i===2) window._def=0;
-}
-function closeApp(){ document.getElementById('modal').style.display='none'; }
-function defend(){
-  window._def=(window._def||0)+1;
-  let e=document.getElementById('def'); if(e) e.textContent=window._def;
-  let en=document.getElementById('enemy'); if(en){ let f=['🇷🇺','🇨🇳','🇺🇸','🇰🇵']; en.textContent=f[Math.floor(Math.random()*f.length)]; }
-  addPts(10); if(window._def===5) alert('🎉 صدّيت 5 هجمات! بقيت ملازم!');
-}
-function waHack(){
-  let n=document.getElementById('waNum').value||'011xxxxxxxxx';
-  let o=document.getElementById('waOut'); o.textContent='جاري اختراق '+n+'...\n';
-  setTimeout(()=>{ o.textContent+='تم اختراق الواتساب... بهزر 😂\nده كان محاكاة! جهاز صاحبك سليم\nالدرس: متدخلش رقمك في أي موقع'; addPts(20); },1200);
-}
-function askNora(){
-  let q=document.getElementById('aiIn').value.toLowerCase(); let b=document.getElementById('aiBox');
-  let ans='نورة: يا روحي، سؤال حلو! ابعت لإسلام واتساب وهو هيرد عليك 😘';
-  if(q.indexOf('فحص')>-1) ans='نورة: فحص الموقع 500ج يا قلبي، وبييجي معاه تقرير 💅';
-  else if(q.indexOf('بحبك')>-1) ans='نورة: 🙈 وانا كمان، بس انا AI، حبنا مستحيل زي كلمة سر ضعيفة';
-  else if(q.indexOf('هاكر')>-1) ans='نورة: عايز تبقى هاكر؟ ابدأ لينكس، بعدين بايثون، بعدين ادخل الأكاديمية عندنا 😍';
-  b.textContent+='\n👤 أنت: '+document.getElementById('aiIn').value+'\n'+ans+'\n'; document.getElementById('aiIn').value=''; addPts(5);
-}
-let radios=['بودكاست: إزاي تبقى هاكر في 2026','بودكاست: أخطر ثغرة في العالم','بودكاست: قصة أول اختراق ليا']; let ri=0;
-function nextRadio(){ ri=(ri+1)%radios.length; document.getElementById('radioTxt').textContent=radios[ri]; addPts(5); }
 function runTerm(){
   let inp=document.getElementById('termIn'); let cmd=inp.value.trim().toLowerCase(); let out=document.getElementById('termOut');
-  out.textContent+='\n$ '+cmd+'\n';
+  if(!cmd) return; out.textContent+='\n$ '+cmd+'\n';
   let r='الأمر مش موجود - جرب ls';
   if(cmd==='ls') r='flag.txt  kabous.txt  tools/';
   if(cmd==='whoami') r='eslam_kabous - Sheikh Fadl';
-  if(cmd==='cat flag.txt') r='FLAG{KABOUS_MEGA} 🎉'; out.textContent+=r+'\n'; inp.value=''; addPts(5);
+  if(cmd==='cat flag.txt') r='FLAG{KABOUS_FUNNEL} 🎉 انت كده هاكر!';
+  out.textContent+=r+'\n'; inp.value='';
 }
-function runHack(){
-  let c=document.getElementById('hackIn').value||'nmap'; let o=document.getElementById('hackOut');
-  o.textContent+='\n> '+c+'\nScanning...\nPort 80 OPEN\nPort 443 OPEN\n✅ Done - Simulation'; addPts(10);
-}
+function runPy(){ document.getElementById('pyOut').textContent='>>> print("انا هاكر")\nانا هاكر\n✅ الكود اشتغل!'; }
+function buy(s){ window.open('https://wa.me/201101145178?text='+encodeURIComponent('عايز أطلب: '+s)); }
 </script>
 </body>
 </html>
